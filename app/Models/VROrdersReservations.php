@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
-class VROrdersReservations extends CoreModel
+class VROrdersReservations extends Model
 {
+    public $updated_at = false;
     /**
      * Table name
      * @var string
@@ -15,5 +17,5 @@ class VROrdersReservations extends CoreModel
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['order_id', 'page_experience_id'];
+    protected $fillable = ['datetime', 'order_id', 'page_experience_id'];
 }

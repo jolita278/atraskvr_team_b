@@ -5,6 +5,7 @@ namespace App\Models;
 
 class VRUsersRolesConnections extends CoreModel
 {
+    public $updated_at = false;
     /**
      * Table name
      * @var string
