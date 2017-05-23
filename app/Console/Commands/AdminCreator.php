@@ -11,14 +11,14 @@ class AdminCreator extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'make:admin';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'make super admin user';
 
     /**
      * Create a new command instance.
@@ -35,8 +35,23 @@ class AdminCreator extends Command
      *
      * @return mixed
      */
-    public function handle()
-    {
-        //
+
+        public function handle(){
+        //$this->comment('Scanning items');
+        $email = $this->ask('please provide email');
+        $this->info($email);
+        $name = $this->ask('please provide name');
+        $this->info($name);
+        $password = $this->ask('please provide password');
+        $this->info($password);
+/*
+        $record = ::create(array(
+            'id' => Uuid::uuid4(),
+            'name' => $name,
+            'email' => $email,
+            'password' => bcrypt( $password),
+        ));*/
+
+       //$record->rolesConnectionData()->sync('super-admin','member');
     }
 }
