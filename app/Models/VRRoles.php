@@ -16,3 +16,4 @@ class VRRoles extends CoreModel
      */
     protected $fillable = ['id', 'name'];
 }
+
