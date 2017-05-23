@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-class VRRoles extends CoreModel
+class VRLanguages extends CoreModel
 {
     /**
      * Table name
      * @var string
      */
-    protected $table = 'vr_roles';
+    protected $table = 'vr_languages';
 
     /**
      * Fields which will be manipulated
@@ -16,4 +16,3 @@ class VRRoles extends CoreModel
      */
     protected $fillable = ['id', 'name'];
 }
-
