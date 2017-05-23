@@ -28,4 +28,8 @@ class VRUsers extends Authenticatable
      */
     protected $hidden = ['password', 'remember_token',];
 
+    public function rolesConnectionData()
+    {
+        return $this->belongsToMany(VRRoles::class, 'vr_users_roles_conn', 'user_id', 'role_id');
+    }
 }

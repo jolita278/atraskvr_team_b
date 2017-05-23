@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\VRUsers;
 use Illuminate\Console\Command;
+use Ramsey\Uuid\Uuid;
 
 class AdminCreator extends Command
 {
@@ -36,22 +38,29 @@ class AdminCreator extends Command
      * @return mixed
      */
 
-        public function handle(){
+    public function handle()
+    {
         //$this->comment('Scanning items');
         $email = $this->ask('please provide email');
         $this->info($email);
-        $name = $this->ask('please provide name');
-        $this->info($name);
+        $username = $this->ask('please provide user name');
+        $this->info($username);
+        $firstname = $this->ask('please provide first name');
+        $this->info($firstname);
+        $lastname = $this->ask('please provide last name');
+        $this->info($lastname);
         $password = $this->ask('please provide password');
         $this->info($password);
-/*
-        $record = ::create(array(
-            'id' => Uuid::uuid4(),
-            'name' => $name,
-            'email' => $email,
-            'password' => bcrypt( $password),
-        ));*/
 
-       //$record->rolesConnectionData()->sync('super-admin','member');
+        $record = VRUsers::create(array(
+            'id' => Uuid::uuid4(),
+            'user_name' => $username,
+            'first_name' => $firstname,
+            'last_name' => $lastname,
+            'email' => $email,
+            'password' => bcrypt($password),
+        ));
+
+        $record->rolesConnectionData()->sync('super-admin');
     }
 }
