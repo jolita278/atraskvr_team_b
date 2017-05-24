@@ -25,17 +25,13 @@ trait UuidTrait
          * for the `id` field (provided by $model->getKeyName()).
          */
         static::creating(function ($model) {
-            $model->{$model->getKeyName()} = $model->generateNewUuid();
-            return true;
+
+            if (!isset($model->attributes['id'])) {
+                $model->attributes['id'] = Uuid::uuid4();
+            } else {
+                //TODO check if code will work without else statement
+                $model->{$model->getKeyName()} = $model->attributes['id'];
+            }
         });
-    }
-    /**
-     * Get a new version 4 (random) UUID.
-     *
-     * @return mixed
-     */
-    public function generateNewUuid()
-    {
-        return Uuid::uuid4();
     }
 }
