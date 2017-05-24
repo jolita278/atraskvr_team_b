@@ -25,6 +25,7 @@ trait UuidTrait
          * for the `id` field (provided by $model->getKeyName()).
          */
         static::creating(function ($model) {
+
             if (!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();
             } else {
