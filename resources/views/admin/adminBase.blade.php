@@ -8,6 +8,9 @@
 <body style="background-color:lightblue">
 
 @yield('pages')
+@yield('adminUsersList')
+@yield('adminUsersSingle')
+@yield('adminUsersEdit')
 
 
 </body>
