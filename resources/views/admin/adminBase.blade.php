@@ -8,8 +8,8 @@
 <body style="background-color:lightblue">
 
 @yield('pages')
-@yield('usersList')
-@yield('usersSingle')
+@yield('adminUsersList')
+@yield('adminUsersSingle')
 
 
 </body>

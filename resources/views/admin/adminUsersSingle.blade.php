@@ -1,6 +1,6 @@
 @extends('admin.adminBase')
 
-@section('usersSingle')
+@section('adminUsersSingle')
     <div class="container">
         <h2>Įrašo duomenys</h2>
 

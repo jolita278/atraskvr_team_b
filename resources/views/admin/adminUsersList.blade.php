@@ -1,6 +1,6 @@
 @extends('admin.adminBase')
 
-@section('usersList')
+@section('adminUsersList')
     <div class="container">
         <h2>Prisiregistravusių vartotojų sąrašas</h2>
         <table class="table table-hover">
