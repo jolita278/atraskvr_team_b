@@ -18,3 +18,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', ['as' => 'app.admin.users.index', 'uses' => 'VRUsersController@adminIndex']);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/', ['uses' => 'VRUsersController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.users.edit', 'uses' => 'VRUsersController@adminEdit']);
+            Route::post('/edit', ['uses' => 'VRUsersController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.users.showDelete', 'uses' => 'VRUsersController@adminDestroy']);
+        });
+    });
+});
+
