@@ -20,7 +20,6 @@ trait UuidTrait
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
             if (!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();
@@ -30,5 +29,4 @@ trait UuidTrait
             }
         });
     }
-
 }
