@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\VRCategoriesTranslations;
 use Illuminate\Database\Seeder;
 
 class CategoriesTranslationsSeeder extends Seeder
@@ -12,35 +13,29 @@ class CategoriesTranslationsSeeder extends Seeder
     public function run()
     {
         $categories = [
-            ["name" => "Apie","slug" => "apie" ],
-            ["name" => "Kontaktai","slug" => "kontaktai"],
-            ["name" => "The Lab","slug" => "lab"],
-            ["name" => "Samsung Irklavimas","slug" => "irklavimas"],
-            ["name" => "Fruit Ninja","slug" => "fruit-ninja"],
-            ["name" => "KTU Parasparnis","slug" => "parasparnis"],
-            ["name" => "Space Pirate Trainer","slug" => "space"],
-            ["name" => "HURL","slug" => "hurl"],
-            ["name" => "Tilt Bruch","slug" => "tilt"],
-            ["name" => "Final Goalie: Football Simulator","slug" => "final"],
-            ["name" => "Merry Snowballs","slug" => "merry"],
-            ["name" => "Project Cars","slug" => "cars"],
+            ["name" => "Apie", "slug" => "apie", "category_id" => "apie", "language_id" => "lt"],
+            ["name" => "About", "slug" => "about", "category_id" => "apie", "language_id" => "en"],
+            ["name" => "O проекте", "slug" => "o проекте", "category_id" => "apie", "language_id" => "ru"],
+            ["name" => "Kontaktai", "slug" => "kontaktai", "category_id" => "kontaktai", "language_id" => "lt"],
+            ["name" => "Contacts", "slug" => "contacts", "category_id" => "kontaktai", "language_id" => "en"],
+            ["name" => "Kонтакты", "slug" => "контакты", "category_id" => "kontaktai", "language_id" => "ru"],
+            ["name" => "Patirėiu-kambariai", "slug" => "patirciu-kambariai", "category_id" => "patirciu-kambariai", "language_id" => "lt"],
+            ["name" => "Experience-rooms", "slug" => "experience-rooms", "category_id" => "patirciu-kambariai", "language_id" => "en"],
+            ["name" => "Kомнаты опытa", "slug" => "kомнаты опытa", "category_id" => "patirciu-kambariai", "language_id" => "ru"],
         ];
 
-        DB::beginTransaction ();
+        DB::beginTransaction();
         try {
-            foreach ($categories as $roleData) {
-                $role = VRRoles::where ('id', $roleData['id'])->first ();
-                if (!$role)
-                    VRRoles::create ($roleData);
-
-
-
+            foreach ($categories as $one) {
+                $categorie = VRCategoriesTranslations::where('slug', $one['slug'])->first();
+                if (!$categorie)
+                    VRCategoriesTranslations::create($one);
             }
         } catch (\Exception $e) {
-            DB::rollback ();
-            throw new Exception($e->getMessage ());
+            DB::rollback();
+            throw new Exception($e->getMessage());
         }
-        DB::commit ();
+        DB::commit();
 
 
     }
