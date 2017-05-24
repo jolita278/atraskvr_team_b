@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+
+
+use App\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Ramsey\Uuid\Uuid;
+
 
 class CoreModel extends Model
 {
     use SoftDeletes;
 
+    use UuidTrait;
     /**
      * Identifies that id will not be auto incrementing
      *
@@ -17,23 +21,4 @@ class CoreModel extends Model
      */
     public $incrementing = false;
 
-    /**
-     * Function which automatically generates and adds UUID for model
-     * if id is not set
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($model) {
-            if (!isset($model->attributes['id'])) {
-                $model->attributes['id'] = Uuid::uuid4();
-            } else {
-                //TODO check if code will work without else statement
-                $model->{$model->getKeyName()} = $model->attributes['id'];
-            }
-        });
-    }
 }
