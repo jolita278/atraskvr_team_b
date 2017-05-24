@@ -10,6 +10,7 @@
 @yield('pages')
 @yield('adminUsersList')
 @yield('adminUsersSingle')
+@yield('adminUsersEdit')
 
 
 </body>

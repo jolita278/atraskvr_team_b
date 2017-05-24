@@ -65,7 +65,13 @@ class VRUsersController extends Controller {
 	 */
 	public function adminEdit($id)
 	{
-        //
+        $config = $this->getRoutesData();
+
+        $config['item'] = VRUsers::find($id);
+
+        $config['item']->pluck('id')->toArray();
+
+        return view('admin.adminUsersEdit', $config);
 	}
 
 	/**
@@ -77,7 +83,28 @@ class VRUsersController extends Controller {
 	 */
 	public function adminUpdate($id)
 	{
-		//
+        $record = VRUsers::find($id);
+        $data = request()->all($id);
+        $first_name = $data['first_name'];
+        $last_name = $data['last_name'];
+        $email = $data['email'];
+        $config = $this->getRoutesData();
+        $config['item'] = VRUsers::find($id);
+        $config['item']->pluck('id')->toArray();
+
+        if ($first_name == null) {
+            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Vardas" !'];
+            return view('admin.adminUsersEdit', $config);
+        } elseif ($last_name == null) {
+            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Pavardė"!'];
+            return view('admin.adminUsersEdit', $config);
+        } elseif ($email == null) {
+            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Email"!'];
+            return view('admin.adminUsersEdit', $config);
+        }
+            $record->update($data);
+        $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['first_name']];
+        return view('admin.adminUsersEdit', $config);
 	}
 
 	/**
