@@ -59,15 +59,10 @@
 <body style="background-color:lightblue">
 @include('navbar')
 @include('header')
-@include('adminSideB')
 @yield('pages')
-@yield('adminUsersList')
-@yield('adminUsersSingle')
-@yield('adminUsersEdit')
-@yield('adminUpload')
-@yield('adminResourcesList')
 
 @include('footer')
 
 </body>
+
 </html>
