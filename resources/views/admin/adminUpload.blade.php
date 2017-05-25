@@ -1,6 +1,7 @@
 @extends('admin.adminBase')
 
 @section('adminUpload')
+    @include('error-notification')
 
         <div class="container">
             <h2>Įkelti nuotrauką</h2>
@@ -13,7 +14,6 @@
                     'files' => true))
            !!}
             <div class="form-group">
-                {!! Form::label('Ieškoti kompiuteryje') !!}
                 {!! Form::file('image', null) !!}
             </div>
 
@@ -23,4 +23,4 @@
             {!! Form::close() !!}
         </div>
 
-@endsection
+@stop
