@@ -64,8 +64,10 @@
 @yield('adminUsersList')
 @yield('adminUsersSingle')
 @yield('adminUsersEdit')
+@yield('adminUpload')
+@yield('adminResourcesList')
+
 @include('footer')
 
 </body>
-
 </html>
