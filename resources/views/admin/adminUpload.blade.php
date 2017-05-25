@@ -7,7 +7,7 @@
 </br>
             {!! Form::open(
                 array(
-                    'route' => 'app.admin.resources.upload',
+                    'route' => 'app.admin.resources.store',
                     'class' => 'form',
                     'novalidate' => 'novalidate',
                     'files' => true))
