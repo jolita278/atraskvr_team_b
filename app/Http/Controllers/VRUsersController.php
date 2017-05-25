@@ -1,10 +1,17 @@
 <?php namespace App\Http\Controllers;
 
+
+
+
 use App\Models\VRUsers;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
 
+    use ValidatesRequests;
 	/**
 	 * Display a listing of the resource.
 	 * GET /vrusers
@@ -92,6 +99,11 @@ class VRUsersController extends Controller {
         $config['item'] = VRUsers::find($id);
         $config['item']->pluck('id')->toArray();
 
+        /*$this->validate($data, [
+            'first_name' => 'required|string|max:255',
+        ]);*/
+
+
         if ($first_name == null) {
             $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Vardas" !'];
             return view('admin.adminUsersEdit', $config);
@@ -132,6 +144,20 @@ class VRUsersController extends Controller {
         $configuration ['usersShowDelete'] = 'app.admin.users.showDelete';
         $configuration ['usersEdit'] = 'app.admin.users.edit';
         return $configuration;
+    }
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'first_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:vr_users',
+            'phone' => 'required|digits:8',
+        ]);
     }
 
 }
