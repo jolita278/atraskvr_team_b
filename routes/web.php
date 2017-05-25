@@ -30,5 +30,16 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.users.showDelete', 'uses' => 'VRUsersController@adminDestroy']);
         });
     });
+
+    Route::group(['prefix' => 'pages'], function () {
+        Route::get('/', ['as' => 'app.admin.pages.index', 'uses' => 'VRPagesController@adminIndex']);
+
+        Route::group(['prefix' => '{slug}'], function () {
+            Route::get('/', ['uses' => 'VRPagesController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
+            Route::post('/edit', ['uses' => 'VRPagesController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.pages.showDelete', 'uses' => 'VRPagesController@adminDestroy']);
+        });
+    });
 });
 
