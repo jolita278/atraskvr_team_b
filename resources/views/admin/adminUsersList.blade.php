@@ -25,14 +25,13 @@
                         </td>
 
                     @endforeach
-
+                    
                     <td><a href="{{route($usersShowDelete, $record['id'])}}"
                            class="btn btn-primary btn-sm">Peržiūrėti</a>
                     </td>
 
                     <td><a href="{{route($usersEdit, $record['id'])}}" class="btn btn-info btn-sm">Koreguoti</a>
                     </td>
-
                     <td><a onclick="deleteItem('{{route($usersShowDelete, $record['id'])}}')"
                            class="btn btn-info btn-sm">Ištrinti</a>
                     </td>

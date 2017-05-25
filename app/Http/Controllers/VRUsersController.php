@@ -116,7 +116,9 @@ class VRUsersController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        VRUsers::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
 	}
     /**
      * Get routes data
