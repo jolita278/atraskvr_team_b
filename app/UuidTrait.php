@@ -21,6 +21,7 @@ trait UuidTrait
     {
         parent::boot();
         static::creating(function ($model) {
+
             if (!isset($model->attributes['id'])) {
                 $model->attributes['id'] = Uuid::uuid4();
             } else {
