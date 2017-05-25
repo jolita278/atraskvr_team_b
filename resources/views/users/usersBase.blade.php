@@ -59,11 +59,8 @@
 <body style="background-color:lightblue">
 @include('navbar')
 @include('header')
-@include('adminSideB')
 @yield('pages')
-@yield('adminUsersList')
-@yield('adminUsersSingle')
-@yield('adminUsersEdit')
+
 @include('footer')
 
 </body>
