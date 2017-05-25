@@ -1,9 +1,12 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Models\VRResources;
 use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;
+
 
 class VRResourcesController extends Controller {
 
@@ -43,6 +46,7 @@ class VRResourcesController extends Controller {
     {
         return view('admin.adminUpload');
     }
+
         /**
          * Uploads file data
          * Creates generates file path
@@ -56,11 +60,26 @@ class VRResourcesController extends Controller {
             "size" => $file->getSize(),
             "mime_type" => $file->getMimeType(),
         ];
-        $path = __DIR__.'/storage/' . date("Y/m/d");
-        $fileName = Carbon::now()->timestamp . '_' . $file->getClientOriginalName();
-        $file->move($path, $fileName);
-        $data["path"] = $path . $fileName;
+        $path = 'upload/' . date("Y/m/d");
+        $fileName = Carbon::now()->timestamp . '_' .$file->getClientOriginalName();
+
+        $file->move(public_path($path), $fileName);
+        $data['path'] = $path . $fileName;
         return VRResources::create($data);
+
+    }
+
+    protected function adminStore(array $data = null )
+    {
+        $resource = request()->file('image');
+        $this->adminUpload($resource);
+
+
+//        DTUsersResourcesConnections::create([
+//            "users_id"=>auth()->user()->id,
+//            "resources_id"=> $record->id
+//        ]);
+
     }
 
 	/**
@@ -86,5 +105,7 @@ class VRResourcesController extends Controller {
 	{
 		//
 	}
+
+
 
 }
