@@ -3,67 +3,42 @@
 @section('adminResourcesList')
     <div class="container">
         <h2>Nuotraukų ir video sąrašas</h2>
-        <table class="table table-hover">
-            <thead>
-            <tr>
 
-                {{--@foreach($list [0] as $key => $value)--}}
 
-                    {{--<th>{{$key}}</th>--}}
-
-                {{--@endforeach--}}
-
-            {{--</tr>--}}
-
-            {{--</thead>--}}
-            {{--<tbody>--}}
-            {{--@foreach ($list as $key => $record)--}}
-                {{--<tr>--}}
-                    {{--@foreach ($record as $key => $value)--}}
-                        {{--<td>--}}
-                            {{--{{$value}}--}}
-                        {{--</td>--}}
-
-                    {{--@endforeach--}}
-
-                    {{--<td><a href="{{route($adminShowDelete, $record['id'])}}"--}}
-                           {{--class="btn btn-primary btn-sm">Peržiūrėti</a>--}}
-                    {{--</td>                   --}}
-                    {{--<td><a onclick="deleteItem('{{route($usersShowDelete, $record['id'])}}')"--}}
-                           {{--class="btn btn-info btn-sm">Ištrinti</a>--}}
-                    {{--</td>--}}
-                {{--</tr>--}}
-
-            {{--@endforeach--}}
-
-            </tbody>
-        </table>
+        <div class="row">
+            @if(count($vr_resources) > 0)
+                <div class="col-md-12 text-center">
+                    <a href="{{ url('admin/upload/create') }}" class="btn btn-primary" role="button">
+                        Pridėti naują
+                    </a>
+                    <hr/>
+                    @include('error-notification')
+                </div>
+            @endif
+            @forelse($vr_resources as $resource)
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <img src="{{asset($resource->file)}}"/>
+                        <div class="caption">
+                            <h3>{{$resource->mime_type}}</h3>
+                            <p> Size: {{ $resource->size }} kb</p>
+                            <p>
+                            <div class="row text-center" style="padding-left:1em;">
+                                <span class="pull-left">&nbsp;</span>
+                                {!! Form::open(['url'=>'/admin/upload/'.$resource->id, 'class'=>'pull-left']) !!}
+                                {!! Form::hidden('_method', 'DELETE') !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>'return confirm(\'Ar tikrai ketinate ištrinti?\')']) !!}
+                                {!! Form::close() !!}
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p>Nėra įkeltų failų, <a href="{{ url('admin/upload/create') }}">Įkelti</a>?</p>
+            @endforelse
+        </div>
+        <div align="center">{!! $vr_resources->render() !!}
+        </div>
     </div>
-@endsection
-
-@section('scripts')
-
-    <script>
-
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        function deleteItem(route) {
-            $.ajax({
-                url: route,
-                dataType: 'json',
-                type: 'DELETE',
-                success: function () {
-                    alert('DELETED');
-                },
-                error: function () {
-                    alert('ERROR');
-                }
-            });
-        }
-
-    </script>
-@endsection
+@stop
