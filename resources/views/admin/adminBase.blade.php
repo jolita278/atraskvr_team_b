@@ -11,6 +11,9 @@
 @yield('adminUsersList')
 @yield('adminUsersSingle')
 @yield('adminUsersEdit')
+@yield('adminUpload')
+@yield('adminResourcesList')
+
 
 
 </body>
