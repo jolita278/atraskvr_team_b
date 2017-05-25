@@ -10,31 +10,17 @@ use Illuminate\Routing\Controller;
 
 class VRResourcesController extends Controller {
 
-    /**
-     * Get routes data
-     *
-     * @return array
-     */
-    public function getRoutesData()
-    {
-        $configuration = [];
-        $configuration ['adminList'] = 'app.admin.resources.index';
-        $configuration ['adminShowDelete'] = 'app.admin.resources.showDelete';
-        $configuration ['adminCreateUpload'] = 'app.admin.resources.createUpload';
-        return $configuration;
-    }
+
 	/**
 	 * Display a listing of the resource.
 	 * GET /resources
 	 *
-	 * @return Response
+	 * @return mixed
 	 */
 	public function adminIndex()
 	{
-//        $configuration = $this->getRoutesData();
-//        $configuration ['list'] = VRResources::orderBy('updated_at', 'desc')->get()->toArray();
-//        return view('admin.adminUpload', $configuration);
-        return view('admin.adminResourcesList');
+        $resources = VRResources::paginate(10);
+        return view('admin.adminResourcesList')->with('vr_resources', $resources);
 	}
     /**
      * Show the form for creating a new resource.
@@ -68,19 +54,18 @@ class VRResourcesController extends Controller {
         return VRResources::create($data);
 
     }
-
-    protected function adminStore(array $data = null )
+    /**
+     * Store a newly created resource in storage.
+     * POST /resources
+     *
+     * @return mixed
+     */
+    protected function adminStore()
     {
-        $resource = request()->file('image');
-        $this->adminUpload($resource);
-
-
-//        DTUsersResourcesConnections::create([
-//            "users_id"=>auth()->user()->id,
-//            "resources_id"=> $record->id
-//        ]);
-
-    }
+        $vr_resources = request()->file('image');
+        $this->adminUpload($vr_resources);
+        return redirect('/admin/upload/')->with('message', 'Failas sėkmingai įkeltas!');
+   }
 
 	/**
 	 * Display the specified resource.
@@ -99,11 +84,12 @@ class VRResourcesController extends Controller {
 	 * DELETE /resources/{id}
 	 *
 	 * @param  int  $id
-	 * @return Response
+	 * @return mixed
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        VRResources::destroy($id);
+        return redirect('/admin/upload/')->with('message','Įrašas buvo ištrintas!');
 	}
 
 
