@@ -30,6 +30,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.users.showDelete', 'uses' => 'VRUsersController@adminDestroy']);
         });
     });
+
     Route::group(['prefix' => 'upload'], function () {
         Route::get('/', ['as' => 'app.admin.resources.index', 'uses' => 'VRResourcesController@adminIndex']);
         Route::get('/create', ['uses' => 'VRResourcesController@adminCreate']);
@@ -38,6 +39,17 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => '{id}'], function () {
             Route::get('/', ['uses' => 'VRResourcesController@adminShow']);
             Route::delete('/', ['as' => 'app.admin.resources.showDelete', 'uses' => 'VRResourcesController@adminDestroy']);
+
+
+    Route::group(['prefix' => 'pages'], function () {
+        Route::get('/', ['as' => 'app.admin.pages.index', 'uses' => 'VRPagesController@adminIndex']);
+
+        Route::group(['prefix' => '{slug}'], function () {
+            Route::get('/', ['uses' => 'VRPagesController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
+            Route::post('/edit', ['uses' => 'VRPagesController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.pages.showDelete', 'uses' => 'VRPagesController@adminDestroy']);
+
         });
     });
 });

@@ -16,4 +16,11 @@ class VRPages extends CoreModel
      * @var array
      */
     protected $fillable = ['id', 'category_id', 'resource_id'];
+
+    public function translationsData()
+    {
+        return $this->hasMany(VRPagesTranslations::class, 'page_id', 'id')/*->with('languageData')*/;
+    }
+
 }
+
