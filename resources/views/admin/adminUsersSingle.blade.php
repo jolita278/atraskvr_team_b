@@ -20,6 +20,8 @@
 
                 <a onclick="deleteItem('{{route($usersShowDelete, $single['id'])}}')"
                    class="btn btn-info btn-sm">Ištrinti</a>
+
+                <a href="{{route($usersList)}}" class="btn btn-primary btn-sm">Grįžti</a>
             </tbody>
         </table>
     </div>
