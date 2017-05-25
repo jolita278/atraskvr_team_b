@@ -65,7 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return VRUsers::create([
+        $record = VRUsers::create([
             'id' => Uuid::uuid4(),
             'email' => $data['email'],
             'first_name' => $data['first_name'],
@@ -74,5 +74,7 @@ class RegisterController extends Controller
             'user_name' => $data['user_name'],
             'password' => bcrypt($data['password']),
         ]);
+        $record->rolesConnectionData()->sync('user');
+        return $record;
     }
 }
