@@ -5,8 +5,6 @@
 
 use App\Models\VRUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
@@ -21,7 +19,7 @@ class VRUsersController extends Controller {
 	public function adminIndex()
 	{
         $configuration = $this->getRoutesData();
-        $configuration ['list']=VRUsers::orderBy('updated_at', 'desc')->get()->toArray();
+        $configuration ['list']=VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
         return view('admin.adminUsersList', $configuration);
 	}
 
@@ -100,14 +98,17 @@ class VRUsersController extends Controller {
         $this->validate(request(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:vr_users',
-            'password' => 'required|string|min:1|confirmed',
+            'email' => 'required|string|email|max:255',
             'phone' => 'digits:8',
         ]);
 
+        $config['message'] = 'Vartotojas sėkmingai atnaujintas';
+
         $record->update($data);
-        //$config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['first_name']];
-        return view('admin.adminUsersEdit', $config);
+
+        $config->session()->flash('message', 'User was successfully added!');
+
+        return view('admin.adminUsersEdit');
 	}
 
 	/**

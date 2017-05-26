@@ -1,20 +1,6 @@
 @extends('admin.adminBase')
 
 @section('adminUsersEdit')
-    @if(isset($success_message))
-
-        @foreach($success_message as $message)
-            <div style="background:green; color:white"> {{$message}}!</div>
-        @endforeach
-    @endif
-
-    @if(isset($error))
-
-        @foreach($error as $err)
-            <div style="background:red; color:white"> {{$err}}!</div>
-        @endforeach
-
-    @endif
     <div class="container">
         <h2>Koreguoti vartotojo informaciją</h2>
 
@@ -37,17 +23,10 @@
         <br>
         <br>
         {{Form::submit('Patvirtinti') }} {{--TODO:: button reset--}}
-
+        <a href="{{route($usersList)}}" class="btn">Grįžti</a>
         {!!Form::close() !!}
-        <br>
-        @if(count($errors))
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-        @endif
+
     </div>
+    <div>@include('error-notification')</div>
+
 @endsection
