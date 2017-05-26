@@ -41,6 +41,13 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.resources.showDelete', 'uses' => 'VRResourcesController@adminDestroy']);
         });
     });
+
+    Route::group(['prefix' => 'languages'], function () {
+        Route::get('/', ['as' => 'app.admin.languages.index', 'uses' => 'VRLanguagesController@adminIndex']);
+    });
+    Route::group(['prefix' => 'categories'], function () {
+        Route::get('/', ['as' => 'app.admin.categories.index', 'uses' => 'VRCategoriesController@adminIndex']);
+    });
 });
 
 
