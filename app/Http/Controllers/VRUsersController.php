@@ -19,7 +19,6 @@ class VRUsersController extends Controller {
 	public function adminIndex()
 	{
         $configuration = $this->getRoutesData();
-        $configuration ['list']=VRUsers::orderBy('updated_at', 'desc')->get()->toArray();
         return view('admin.adminUsersList', $configuration);
 	}
 
@@ -102,9 +101,13 @@ class VRUsersController extends Controller {
             'phone' => 'digits:8',
         ]);
 
+        $config['message'] = 'Vartotojas sėkmingai atnaujintas';
+
         $record->update($data);
-        //$config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['first_name']];
-        return view('admin.adminUsersEdit', $config);
+
+        $config->session()->flash('message', 'User was successfully added!');
+
+        return view('admin.adminUsersEdit');
 	}
 
 	/**
