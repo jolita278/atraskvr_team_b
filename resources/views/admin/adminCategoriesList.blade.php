@@ -9,27 +9,25 @@
 
                 @foreach($list [0] as $key => $value)
 
-                    <td>{{$key}}</td>
+                    <th>{{$key}}</th>
+
                 @endforeach
 
             </tr>
 
             </thead>
             <tbody>
-
-            @foreach ($list as $record)
+            @foreach ($list as $key => $record)
                 <tr>
-                @foreach($record as $key => $value)
-{{dd($record)}}
-                    @if($key == 'category_translations')
+                    @foreach ($record as $key => $value)
+                        <td>
+                            {{$value}}
+                        </td>
 
+                    @endforeach
 
-                        <td>{{$value}}</td>
-                    @else
-                        <td>{{$value}}</td>
-                        @endif
-                @endforeach
                 </tr>
+
             @endforeach
 
             </tbody>

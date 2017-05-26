@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Models\VRCategories;
+use App\Models\VRCategoriesTranslations;
 use Illuminate\Routing\Controller;
 
 class VRCategoriesController extends Controller {
@@ -14,11 +14,7 @@ class VRCategoriesController extends Controller {
 
     public function adminIndex()
     {
-       // $configuration = $this->getRoutesData();
-        $configuration ['list'] =  VRCategories::with( ['categoryTranslations'])->get()->toArray();
-        //$configuration ['list'] = $data->toArray();
-        //$configuration = $this->configuration()->toArray();
-       //dd($configuration);
+        $configuration ['list'] =  VRCategoriesTranslations::get()->toArray();
         return view('admin.adminCategoriesList', $configuration);
     }
 
