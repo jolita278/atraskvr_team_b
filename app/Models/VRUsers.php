@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -9,6 +10,7 @@ class VRUsers extends Authenticatable
 {
     use Notifiable;
     public $incrementing = false;
+    use SoftDeletes;
     /**
      * Table name
      * @var string
