@@ -6,26 +6,33 @@
         <table class="table table-hover">
             <thead>
             <tr>
-
-                @foreach($list [0] as $key => $value)
-
-                    <th>{{$key}}</th>
-
-                @endforeach
-
+                <th>Nr</th>
+                <th>ID</th>
+                <th>Sukurtas</th>
+                <th>Pakeistas</th>
+                <th>Ištrintas</th>
+                <th>Vardas</th>
+                <th>Pavardė</th>
+                <th>Prisijungimo vardas</th>
+                <th>El.paštas</th>
+                <th>Telefono numeris</th>
+                <th>Rolė</th>
             </tr>
-
             </thead>
             <tbody>
             @foreach ($list as $key => $record)
                 <tr>
                     @foreach ($record as $key => $value)
-                        <td>
-                            {{$value}}
-                        </td>
+                        @if($key == 'roles_connection_data')
+                                @foreach($record['roles_connection_data'] as $role)
+                                    <td>{{$role['name']}}</td>
+                                @endforeach
+                        @else
+                            <td>{{$value}}</td>
+                        @endif
 
                     @endforeach
-                    
+
                     <td><a href="{{route($usersShowDelete, $record['id'])}}"
                            class="btn btn-primary btn-sm">Peržiūrėti</a>
                     </td>
@@ -35,6 +42,7 @@
                     <td><a onclick="deleteItem('{{route($usersShowDelete, $record['id'])}}')"
                            class="btn btn-info btn-sm">Ištrinti</a>
                     </td>
+
                 </tr>
 
             @endforeach

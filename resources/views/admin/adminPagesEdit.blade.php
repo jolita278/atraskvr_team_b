@@ -1,6 +1,7 @@
 @extends('admin.adminBase')
 
-@section('adminUsersEdit')
+@section('adminPagesEdit')
+
     <div class="container">
         <h2>Koreguoti vartotojo informaciją</h2>
 
@@ -23,10 +24,8 @@
         <br>
         <br>
         {{Form::submit('Patvirtinti') }} {{--TODO:: button reset--}}
-        <a href="{{route($usersList)}}" class="btn">Grįžti</a>
+
         {!!Form::close() !!}
 
     </div>
-    <div>@include('error-notification')</div>
-
 @endsection
