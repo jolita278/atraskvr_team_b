@@ -1,10 +1,17 @@
 <?php namespace App\Http\Controllers;
 
+
+
+
 use App\Models\VRUsers;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
 
+    use ValidatesRequests;
 	/**
 	 * Display a listing of the resource.
 	 * GET /vrusers
@@ -85,25 +92,21 @@ class VRUsersController extends Controller {
 	{
         $record = VRUsers::find($id);
         $data = request()->all($id);
-        $first_name = $data['first_name'];
-        $last_name = $data['last_name'];
-        $email = $data['email'];
+
         $config = $this->getRoutesData();
         $config['item'] = VRUsers::find($id);
         $config['item']->pluck('id')->toArray();
 
-        if ($first_name == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Vardas" !'];
-            return view('admin.adminUsersEdit', $config);
-        } elseif ($last_name == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Pavardė"!'];
-            return view('admin.adminUsersEdit', $config);
-        } elseif ($email == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Email"!'];
-            return view('admin.adminUsersEdit', $config);
-        }
-            $record->update($data);
-        $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['first_name']];
+        $this->validate(request(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:vr_users',
+            'password' => 'required|string|min:1|confirmed',
+            'phone' => 'digits:8',
+        ]);
+
+        $record->update($data);
+        //$config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['first_name']];
         return view('admin.adminUsersEdit', $config);
 	}
 
@@ -116,7 +119,9 @@ class VRUsersController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        VRUsers::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
 	}
     /**
      * Get routes data
@@ -131,5 +136,4 @@ class VRUsersController extends Controller {
         $configuration ['usersEdit'] = 'app.admin.users.edit';
         return $configuration;
     }
-
 }

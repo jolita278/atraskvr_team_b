@@ -19,7 +19,7 @@ class CategoriesTranslationsSeeder extends Seeder
             ["name" => "Kontaktai", "slug" => "kontaktai", "category_id" => "kontaktai", "language_id" => "lt"],
             ["name" => "Contacts", "slug" => "contacts", "category_id" => "kontaktai", "language_id" => "en"],
             ["name" => "Kонтакты", "slug" => "контакты", "category_id" => "kontaktai", "language_id" => "ru"],
-            ["name" => "Patirėiu-kambariai", "slug" => "patirciu-kambariai", "category_id" => "patirciu-kambariai", "language_id" => "lt"],
+            ["name" => "Patirčių-kambariai", "slug" => "patirciu-kambariai", "category_id" => "patirciu-kambariai", "language_id" => "lt"],
             ["name" => "Experience-rooms", "slug" => "experience-rooms", "category_id" => "patirciu-kambariai", "language_id" => "en"],
             ["name" => "Kомнаты опытa", "slug" => "kомнаты опытa", "category_id" => "patirciu-kambariai", "language_id" => "ru"],
         ];
