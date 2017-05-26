@@ -5,8 +5,6 @@
 
 use App\Models\VRUsers;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
@@ -100,8 +98,7 @@ class VRUsersController extends Controller {
         $this->validate(request(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:vr_users',
-            'password' => 'required|string|min:1|confirmed',
+            'email' => 'required|string|email|max:255',
             'phone' => 'digits:8',
         ]);
 
