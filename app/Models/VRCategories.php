@@ -18,8 +18,7 @@ class VRCategories extends CoreModel
 
     public function  categoryTranslations( )
     {
-        return $this->hasMany(VRCategoriesTranslations:: class,'category_id','id')->with('languageData');
+        return $this->belongsToMany(VRLanguages:: class,'vr_categories_translations','category_id', 'language_id');
     }
-
 
 }
