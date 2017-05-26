@@ -57,9 +57,9 @@
     </style>
 </head>
 <body style="background-color:lightblue">
-@include('navbar')
-@include('header')
-@include('adminSideB')
+@include('admin.adminNavbar')
+@include('admin.adminSideB')
+
 @yield('pages')
 @yield('adminUsersList')
 @yield('adminUsersSingle')

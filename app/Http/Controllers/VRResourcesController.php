@@ -91,7 +91,4 @@ class VRResourcesController extends Controller {
         VRResources::destroy($id);
         return redirect('/admin/upload/')->with('message','Įrašas buvo ištrintas!');
 	}
-
-
-
 }
