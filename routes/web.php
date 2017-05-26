@@ -41,6 +41,20 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.resources.showDelete', 'uses' => 'VRResourcesController@adminDestroy']);
         });
     });
+
+    Route::group(['prefix' => 'pages'], function () {
+        Route::get('/', ['as' => 'app.admin.pages.index', 'uses' => 'VRPagesController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.pages.create', 'uses' => 'VRPagesController@adminCreate']);
+        Route::post('/create', ['uses' => 'VRPagesController@adminStore']);
+
+        Route::group(['prefix' => '{slug}'], function () {
+            Route::get('/', ['uses' => 'VRPagesController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
+            Route::post('/edit', ['uses' => 'VRPagesController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.pages.showDelete', 'uses' => 'VRPagesController@adminDestroy']);
+        });
+    });
 });
 
+//TODO: choose slug or id in line 49
 
