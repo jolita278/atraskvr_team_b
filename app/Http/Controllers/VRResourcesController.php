@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\VRResources;
 use Carbon\Carbon;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Routing\Controller;
 
 
 class VRResourcesController extends Controller {
 
-
+    use ValidatesRequests;
 	/**
 	 * Display a listing of the resource.
 	 * GET /resources
@@ -19,7 +20,7 @@ class VRResourcesController extends Controller {
 	 */
 	public function adminIndex()
 	{
-        $resources = VRResources::paginate(10);
+        $resources = VRResources::paginate(4);
         return view('admin.adminResourcesList')->with('vr_resources', $resources);
 	}
     /**
@@ -46,11 +47,13 @@ class VRResourcesController extends Controller {
             "size" => $file->getSize(),
             "mime_type" => $file->getMimeType(),
         ];
-        $path = 'upload/' . date("Y/m/d");
+        $path = 'upload/' . date("Y/m/d") . '/';
         $fileName = Carbon::now()->timestamp . '_' .$file->getClientOriginalName();
 
         $file->move(public_path($path), $fileName);
         $data['path'] = $path . $fileName;
+
+
         return VRResources::create($data);
 
     }
