@@ -1,7 +1,10 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\VRCategories;
+use App\Models\VRLanguages;
 use App\Models\VRPages;
 use App\Models\VRPagesTranslations;
+use App\Models\VRResources;
 use Illuminate\Routing\Controller;
 
 class VRPagesController extends Controller
@@ -34,7 +37,12 @@ class VRPagesController extends Controller
      */
     public function adminCreate()
     {
-        //
+        $config = [];
+        $config['category'] = VRCategories::pluck('id','id')->toArray();
+        $config['resource']= VRResources::pluck('path', 'id')->toArray();
+        $config['language']=VRLanguages::pluck('name','id')->toArray();
+//dd($config);
+        return view ('admin.adminPagesCreate' , $config);
     }
 
     /**
@@ -45,7 +53,23 @@ class VRPagesController extends Controller
      */
     public function adminStore()
     {
-        //
+        //dd($_POST);
+        $data = request()->all();
+        VRPages::create(array(
+            'category_id' => $data['category_id'],
+            //'resource_id' => $data['resource_id'],
+
+        ));
+
+        VRPagesTranslations::create(array(
+            'language_id' => $data['language_id'],
+            'title' => $data['title'],
+            'description_short' => $data['description_short'],
+            'description_long' => $data['description_long'],
+            'slug' => $data['slug']
+        ));
+
+
     }
 
     /**
@@ -69,6 +93,7 @@ class VRPagesController extends Controller
      */
     public function adminEdit($id)
     {
+        //$config['language']= VRPagesTranslations::pluck('language_id', 'id')->toArray();
         return view('admin.adminPagesEdit');
     }
 

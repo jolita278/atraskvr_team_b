@@ -54,6 +54,10 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+
+        textarea {
+            resize: none;
+        }
     </style>
 </head>
 <body style="background-color:lightblue">
@@ -70,6 +74,7 @@
 @yield('adminPagesList')
 @yield('adminPagesSingle')
 @yield('adminPagesEdit')
+@yield('adminPagesCreate')
 
 
 @include('footer')
