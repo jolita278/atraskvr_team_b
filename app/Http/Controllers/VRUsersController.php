@@ -19,6 +19,7 @@ class VRUsersController extends Controller {
 	public function adminIndex()
 	{
         $configuration = $this->getRoutesData();
+        $configuration ['list']=VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
         return view('admin.adminUsersList', $configuration);
 	}
 
