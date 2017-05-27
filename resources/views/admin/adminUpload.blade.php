@@ -1,10 +1,10 @@
 @extends('admin.adminBase')
 
 @section('adminUpload')
-    @include('error-notification')
 
     <div class="container">
         <h2>Įkelti nuotrauką</h2></br>
+        @include('error-notification')
 
         {!! Form::open(
             array(
@@ -19,8 +19,11 @@
 
         <div class="form-group">
             {!! Form::submit('Įkelti') !!}
+
         </div>
+
         {!! Form::close() !!}
+
     </div>
 
 @stop

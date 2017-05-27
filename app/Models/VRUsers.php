@@ -21,7 +21,7 @@ class VRUsers extends Authenticatable
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['id', 'first_name', 'last_name', 'user_name', 'email', 'password', 'phone', 'remember_token'];
+    protected $fillable = ['id', 'user_name', 'last_name', 'email', 'password', 'phone', 'remember_token'];
 
     /**
      * Fields which will be hidden
@@ -29,6 +29,10 @@ class VRUsers extends Authenticatable
      */
     protected $hidden = ['password', 'remember_token',];
 
+    /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function rolesConnectionData()
     {
         return $this->belongsToMany(VRRoles::class, 'vr_users_roles_conn', 'user_id', 'role_id');

@@ -21,9 +21,10 @@ class CreateVrPagesTranslationsTable extends Migration {
 			$table->string('page_id', 36)->nullable()->index('fk_vr_page_translations_vr_pages1_idx');
 			$table->string('language_id', 36)->nullable()->index('fk_vr_page_translations_vr_languages1_idx');
 			$table->string('title');
-			$table->string('description _short')->nullable();
+			$table->string('description_short')->nullable();
 			$table->text('description_long', 65535)->nullable();
 			$table->string('slug')->unique('slug_UNIQUE');
+			$table->unique(['page_id','language_id'], 'page_id');
 		});
 	}
 

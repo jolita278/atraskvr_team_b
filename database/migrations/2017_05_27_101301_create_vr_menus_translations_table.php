@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVrCategoriesTranslationsTable extends Migration {
+class CreateVrMenusTranslationsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,17 @@ class CreateVrCategoriesTranslationsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('vr_categories_translations', function(Blueprint $table)
+		Schema::create('vr_menus_translations', function(Blueprint $table)
 		{
 			$table->integer('count', true);
 			$table->string('id', 36)->unique('id_UNIQUE');
 			$table->timestamps();
 			$table->softDeletes();
-			$table->string('category_id', 36)->nullable()->index('fk_vr_page_category_translations_vr_pages_category1_idx');
-			$table->string('language_id', 36)->nullable()->index('fk_vr_page_category_translations_vr_languages1_idx');
+			$table->string('menu_id', 36)->nullable()->index('fk_vr_menu_translations_vr_menu1_idx');
+			$table->string('language_id', 36)->nullable()->index('fk_vr_menu_translations_vr_languages1_idx');
 			$table->string('name');
 			$table->string('slug')->unique('slug_UNIQUE');
+			$table->unique(['menu_id','language_id'], 'menu_id');
 		});
 	}
 
@@ -33,7 +34,7 @@ class CreateVrCategoriesTranslationsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('vr_categories_translations');
+		Schema::drop('vr_menus_translations');
 	}
 
 }
