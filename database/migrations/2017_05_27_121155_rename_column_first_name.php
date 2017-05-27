@@ -14,7 +14,7 @@ class RenameColumnFirstName extends Migration
     public function up()
     {
         Schema::table('vr_users', function (Blueprint $table) {
-            $table->renameColumn('first_name', 'name');
+            $table->renameColumn('first_name', 'user_name');
         });
     }
 
@@ -26,7 +26,7 @@ class RenameColumnFirstName extends Migration
     public function down()
     {
         Schema::table('vr_users', function (Blueprint $table) {
-            $table->renameColumn('name', 'first_name');
+            $table->renameColumn('user_name', 'first_name');
         });
     }
 }

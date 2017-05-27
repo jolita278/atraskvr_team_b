@@ -21,7 +21,7 @@ class VRUsers extends Authenticatable
      * Fields which will be manipulated
      * @var array
      */
-    protected $fillable = ['id', 'name', 'last_name', 'email', 'password', 'phone', 'remember_token'];
+    protected $fillable = ['id', 'user_name', 'last_name', 'email', 'password', 'phone', 'remember_token'];
 
     /**
      * Fields which will be hidden

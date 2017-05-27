@@ -43,22 +43,23 @@ class AdminCreator extends Command
         //$this->comment('Scanning items');
         $email = $this->ask('please provide email');
         $this->info($email);
-        $username = $this->ask('please provide user name');
-        $this->info($username);
-        $firstname = $this->ask('please provide first name');
-        $this->info($firstname);
+        $user_name = $this->ask('please provide first name');
+        $this->info($user_name);
         $lastname = $this->ask('please provide last name');
         $this->info($lastname);
+        $phone = $this->ask('please provide phone');
+        $this->info($phone);
         $password = $this->ask('please provide password');
         $this->info($password);
 
         $record = VRUsers::create(array(
             'id' => Uuid::uuid4(),
-            'user_name' => $username,
-            'first_name' => $firstname,
+            'user_name' => $user_name,
             'last_name' => $lastname,
             'email' => $email,
+            'phone' => $phone,
             'password' => bcrypt($password),
+
         ));
 
         $record->rolesConnectionData()->sync('super-admin');
