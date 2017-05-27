@@ -54,20 +54,35 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+
+        textarea {
+            resize: none;
+        }
     </style>
 </head>
 <body style="background-color:lightblue">
-@include('navbar')
-@include('header')
-@include('adminSideB')
+
+@include('admin.adminNavbar')
+@include('admin.adminSideB')
+
 @yield('pages')
 @yield('adminUsersList')
+@yield('adminLanguagesList')
+@yield('adminCategoriesList')
 @yield('adminUsersSingle')
 @yield('adminUsersEdit')
 @yield('adminUpload')
 @yield('adminResourcesList')
+@yield('adminPagesList')
+@yield('adminPagesSingle')
+@yield('adminPagesEdit')
+@yield('adminPagesCreate')
+
 
 @include('footer')
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+@yield('scripts')
+
 </html>

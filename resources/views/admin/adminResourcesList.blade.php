@@ -18,7 +18,7 @@
             @forelse($vr_resources as $resource)
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <img src="{{asset($resource->file)}}"/>
+                        <img src="{{asset($resource->path)}}"/>
                         <div class="caption">
                             <h3>{{$resource->mime_type}}</h3>
                             <p> Size: {{ $resource->size }} kb</p>

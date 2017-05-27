@@ -1,10 +1,15 @@
 <?php namespace App\Http\Controllers;
 
+
+
+
 use App\Models\VRUsers;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 
 class VRUsersController extends Controller {
 
+    use ValidatesRequests;
 	/**
 	 * Display a listing of the resource.
 	 * GET /vrusers
@@ -14,7 +19,7 @@ class VRUsersController extends Controller {
 	public function adminIndex()
 	{
         $configuration = $this->getRoutesData();
-        $configuration ['list']=VRUsers::orderBy('updated_at', 'desc')->get()->toArray();
+        $configuration ['list']=VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
         return view('admin.adminUsersList', $configuration);
 	}
 
@@ -85,26 +90,25 @@ class VRUsersController extends Controller {
 	{
         $record = VRUsers::find($id);
         $data = request()->all($id);
-        $first_name = $data['first_name'];
-        $last_name = $data['last_name'];
-        $email = $data['email'];
+
         $config = $this->getRoutesData();
         $config['item'] = VRUsers::find($id);
         $config['item']->pluck('id')->toArray();
 
-        if ($first_name == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Vardas" !'];
-            return view('admin.adminUsersEdit', $config);
-        } elseif ($last_name == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Pavardė"!'];
-            return view('admin.adminUsersEdit', $config);
-        } elseif ($email == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Email"!'];
-            return view('admin.adminUsersEdit', $config);
-        }
-            $record->update($data);
-        $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['first_name']];
-        return view('admin.adminUsersEdit', $config);
+        $this->validate(request(), [
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'phone' => 'digits:8',
+        ]);
+
+        $config['message'] = 'Vartotojas sėkmingai atnaujintas';
+
+        $record->update($data);
+
+        $config->session()->flash('message', 'User was successfully added!');
+
+        return view('admin.adminUsersEdit');
 	}
 
 	/**
@@ -116,7 +120,9 @@ class VRUsersController extends Controller {
 	 */
 	public function adminDestroy($id)
 	{
-		//
+        VRUsers::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
 	}
     /**
      * Get routes data
@@ -131,5 +137,4 @@ class VRUsersController extends Controller {
         $configuration ['usersEdit'] = 'app.admin.users.edit';
         return $configuration;
     }
-
 }

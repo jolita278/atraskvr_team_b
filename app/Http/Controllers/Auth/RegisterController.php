@@ -51,6 +51,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:vr_users',
             'password' => 'required|string|min:1|confirmed',
             'phone' => 'required|digits:8',
@@ -65,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return VRUsers::create([
+        $record = VRUsers::create([
             'id' => Uuid::uuid4(),
             'email' => $data['email'],
             'first_name' => $data['first_name'],
@@ -74,5 +75,7 @@ class RegisterController extends Controller
             'user_name' => $data['user_name'],
             'password' => bcrypt($data['password']),
         ]);
+        $record->rolesConnectionData()->sync('user');
+        return $record;
     }
 }
