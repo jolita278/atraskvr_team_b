@@ -13,7 +13,6 @@
                 <th>Ištrintas</th>
                 <th>Vardas</th>
                 <th>Pavardė</th>
-                <th>Prisijungimo vardas</th>
                 <th>El.paštas</th>
                 <th>Telefono numeris</th>
                 <th>Rolė</th>

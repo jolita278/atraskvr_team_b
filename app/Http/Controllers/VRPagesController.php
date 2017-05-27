@@ -18,8 +18,6 @@ class VRPagesController extends Controller
      */
     public function adminIndex()
     {
-
-
         $config = [];
         $config['routeShowDelete'] = 'app.admin.pages.showDelete';
         $config['routeEdit'] = 'app.admin.pages.edit';
@@ -68,8 +66,7 @@ class VRPagesController extends Controller
             'description_long' => $data['description_long'],
             'slug' => $data['slug']
         ));
-
-
+        return redirect('/admin/pages/')->with('message', 'Puslapis sėkmingai sukurtas!');
     }
 
     /**

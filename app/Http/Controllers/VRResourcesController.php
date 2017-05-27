@@ -65,7 +65,16 @@ class VRResourcesController extends Controller {
      */
     protected function adminStore()
     {
+//        $this->validate(request(), [
+//            'mime_type' => 'required'
+//        ]);
         $vr_resources = request()->file('image');
+
+//        $validation = $vr_resources;
+//        if ($validation->fails()) {
+//            return redirect()->back()->withInput()
+//                ->with('errors', $validation->errors());
+//        }
         $this->adminUpload($vr_resources);
         return redirect('/admin/upload/')->with('message', 'Failas sėkmingai įkeltas!');
    }
