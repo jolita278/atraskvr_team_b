@@ -57,7 +57,9 @@
 
         textarea {
             resize: none;
+
         }
+
     </style>
 </head>
 <body style="background-color:lightblue">
