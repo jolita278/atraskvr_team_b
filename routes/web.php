@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', ['as' => 'app.admin.orders.index', 'uses' => 'VROrdersController@adminIndex']);
+
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', ['as' => 'app.admin.users.index', 'uses' => 'VRUsersController@adminIndex']);
 
@@ -48,6 +50,8 @@ Route::group(['prefix' => 'admin'], function () {
     });
     Route::group(['prefix' => 'categories'], function () {
         Route::get('/', ['as' => 'app.admin.categories.index', 'uses' => 'VRCategoriesController@adminIndex']);
+    });
+
 
     Route::group(['prefix' => 'pages'], function () {
         Route::get('/', ['as' => 'app.admin.pages.index', 'uses' => 'VRPagesController@adminIndex']);
@@ -61,6 +65,18 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.pages.showDelete', 'uses' => 'VRPagesController@adminDestroy']);
         });
 
+    });
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', ['as' => 'app.admin.orders.index', 'uses' => 'VROrdersController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.orders.create', 'uses' => 'VROrdersController@adminCreate']);
+        Route::post('/create', ['uses' => 'VROrdersController@adminStore']);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/', ['uses' => 'VROrdersController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.orders.edit', 'uses' => 'VROrdersController@adminEdit']);
+            Route::post('/edit', ['uses' => 'VROrdersController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.orders.showDelete', 'uses' => 'VROrdersController@adminDestroy']);
+        });
     });
 });
 
