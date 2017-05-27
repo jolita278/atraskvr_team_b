@@ -3,7 +3,7 @@
 @section('adminPagesEdit')
 
     <div class="container">
-        <h2>Koreguoti vartotojo informaciją</h2>
+        <h2>Kurti naują puslapį</h2>
 
        {!!Form::open(['url' => route('app.admin.pages.create')]) !!}
         {{Form::label('page', 'Puslapio kategorija:')}}
