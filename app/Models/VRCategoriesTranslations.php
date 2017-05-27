@@ -19,12 +19,12 @@ class VRCategoriesTranslations extends CoreModel
 
     public function categoryData()
     {
-        return $this->hasOne(VRCategories::class, 'id','category_id');
+        return $this->hasOne(VRCategories::class, 'id', 'category_id');
     }
 
     public function languageData()
     {
-        return $this->hasOne(VRLanguages::class,'id','language_id');
+        return $this->hasOne(VRLanguages::class, 'id', 'language_id');
     }
 
 }

@@ -27,5 +27,4 @@ class VRPagesTranslations extends CoreModel
     }
 
 
-
 }

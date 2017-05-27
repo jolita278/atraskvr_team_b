@@ -74,6 +74,7 @@
 @yield('adminUpload')
 @yield('adminResourcesList')
 @yield('adminPagesList')
+@yield('adminOrdersList')
 @yield('adminPagesSingle')
 @yield('adminPagesEdit')
 @yield('adminPagesCreate')
