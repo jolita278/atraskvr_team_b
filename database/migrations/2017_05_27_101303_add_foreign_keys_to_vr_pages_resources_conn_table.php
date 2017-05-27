@@ -14,7 +14,7 @@ class AddForeignKeysToVrPagesResourcesConnTable extends Migration {
 	{
 		Schema::table('vr_pages_resources_conn', function(Blueprint $table)
 		{
-			$table->foreign('page_id', 'fk_vr_page_recourses_vr_pages1')->references('id')->on('vr_pages')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('page_id', 'fk_vr_page_recourses_vr_pages1')->references('id')->on('vr_pages')->onUpdate('NO ACTION')->onDelete('CASCADE');
 			$table->foreign('resource_id', 'fk_vr_page_recourses_vr_resources1')->references('id')->on('vr_resources')->onUpdate('NO ACTION')->onDelete('NO ACTION');
 		});
 	}

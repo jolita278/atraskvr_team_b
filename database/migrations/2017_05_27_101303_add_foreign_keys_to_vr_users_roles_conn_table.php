@@ -15,7 +15,7 @@ class AddForeignKeysToVrUsersRolesConnTable extends Migration {
 		Schema::table('vr_users_roles_conn', function(Blueprint $table)
 		{
 			$table->foreign('role_id', 'fk_vr_user_roles_conn_vr_roles1')->references('id')->on('vr_roles')->onUpdate('NO ACTION')->onDelete('NO ACTION');
-			$table->foreign('user_id', 'fk_vr_user_roles_conn_vr_users1')->references('id')->on('vr_users')->onUpdate('NO ACTION')->onDelete('NO ACTION');
+			$table->foreign('user_id', 'fk_vr_user_roles_conn_vr_users1')->references('id')->on('vr_users')->onUpdate('NO ACTION')->onDelete('CASCADE');
 		});
 	}
 
