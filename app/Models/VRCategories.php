@@ -16,9 +16,9 @@ class VRCategories extends CoreModel
      */
     protected $fillable = ['id'];
 
-    public function  categoryTranslations( )
+    public function categoryTranslations()
     {
-        return $this->belongsToMany(VRLanguages:: class,'vr_categories_translations','category_id', 'language_id');
+        return $this->belongsToMany(VRLanguages:: class, 'vr_categories_translations', 'category_id', 'language_id');
     }
 
 }

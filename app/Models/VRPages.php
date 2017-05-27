@@ -19,7 +19,8 @@ class VRPages extends CoreModel
 
     public function translationsData()
     {
-        return $this->hasMany(VRPagesTranslations::class, 'page_id', 'id')/*->with('languageData')*/;
+        return $this->hasMany(VRPagesTranslations::class, 'page_id', 'id')/*->with('languageData')*/
+            ;
     }
 
     public function resourcesConnectionData()
@@ -29,7 +30,7 @@ class VRPages extends CoreModel
 
     public function categoryPageData()
     {
-        return $this->hasOne(VRCategories::class, 'id','category_id');
+        return $this->hasOne(VRCategories::class, 'id', 'category_id');
     }
 }
 
