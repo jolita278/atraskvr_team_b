@@ -18,8 +18,6 @@ class VRPagesController extends Controller
      */
     public function adminIndex()
     {
-
-
         $config = [];
         $config['routeShowDelete'] = 'app.admin.pages.showDelete';
         $config['routeEdit'] = 'app.admin.pages.edit';
