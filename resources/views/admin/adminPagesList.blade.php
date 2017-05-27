@@ -4,7 +4,15 @@
     <div class="container">
         <h2>Puslapių sąrašas</h2>
 
-        <table class="table table-hover">
+        <div class="row">
+
+            <div class="col-md-12 text-center">
+                <a href="{{ url('/admin/pages/create/') }}" class="btn btn-primary" role="button">
+                    Pridėti naują</a>
+                <hr/>
+
+                @include('error-notification')
+            </div>
             @foreach($list as $key => $array)
                 <tr>
                     @foreach ($array['translations_data'] as $key => $record)
@@ -29,8 +37,7 @@
             @endforeach
             @endforeach
 
-        </table>
-    </div>
+        </div>
 @endsection
 
 
