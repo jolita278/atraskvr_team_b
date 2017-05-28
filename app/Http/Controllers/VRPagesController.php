@@ -66,8 +66,7 @@ class VRPagesController extends Controller
             'description_long' => $data['description_long'],
             'slug' => $data['slug']
         ));
-
-
+        return redirect('/admin/pages/')->with('message', 'Puslapis sėkmingai sukurtas!');
     }
 
     /**

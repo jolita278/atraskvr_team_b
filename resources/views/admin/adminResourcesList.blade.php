@@ -4,7 +4,6 @@
     <div class="container">
         <h2>Nuotraukų ir video sąrašas</h2>
 
-
         <div class="row">
             @if(count($vr_resources) > 0)
                 <div class="col-md-12 text-center">
