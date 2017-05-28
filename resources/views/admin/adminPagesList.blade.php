@@ -13,31 +13,22 @@
 
                 @include('error-notification')
             </div>
-            @foreach($list as $key => $array)
-                <tr>
-                    @foreach ($array['translations_data'] as $key => $record)
+            <tr>
+                @foreach($list as $key -> $array)
+                    @if($key == 'translations_data')
+                        @foreach($array as $key -> $record)
+                            @elseif($key == 'language_data')
+                                {{$language_data['name']}}
+                            @else
+                                <td> {{$record}}</td>
+                                @endforeach
+                    @endif
 
-                        @foreach ($record as $key => $value)
-                            <td> {{$value}}</td>
-
-                        @endforeach
-
-                        {{--
-                                                       <td><a href="{{route($routeShowDelete, $value['id'])}}"
-                                                              class="btn btn-primary btn-sm">Peržiūrėti</a>
-                                                       </td>
-
-                                                       <td><a href="{{route($routeEdit, $value['id'])}}" class="btn btn-info btn-sm">Koreguoti</a>
-                                                       </td>
-
-                                                       <td><a onclick="deleteItem('{{route($routeShowDelete, $value['id'])}}')"
-                                                              class="btn btn-info btn-sm">Ištrinti</a>
-                                                       </td>--}}
-                </tr>
+                            <td> {{$array}}</td>
             @endforeach
-            @endforeach
+
+
 
         </div>
+    </div>
 @endsection
-
-

@@ -23,7 +23,8 @@ class VRPagesController extends Controller
         $config['routeEdit'] = 'app.admin.pages.edit';
         $config['list'] = VRPages::with(['translationsData'])->get()->toArray();
         //$config['list']= VRPages::get()->toArray();
-        // dd($config);
+
+        //dd($config);
         return view('admin.adminPagesList', $config);
     }
 
