@@ -80,5 +80,21 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', ['as' => 'app.user.orders.index', 'uses' => 'VROrdersController@index']);
+
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', ['as' => 'app.user.orders.index', 'uses' => 'VROrdersController@index']);
+        Route::get('/create', ['as' => 'app.user.orders.create', 'uses' => 'VROrdersController@create']);
+        Route::post('/create', ['uses' => 'VROrdersController@adminStore']);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/', ['uses' => 'VROrdersController@adminShow']);
+            Route::delete('/', ['as' => 'app.user.orders.showDelete', 'uses' => 'VROrdersController@destroy']);
+        });
+    });
+});
+
+
 //TODO: choose slug or id in line 57
 
