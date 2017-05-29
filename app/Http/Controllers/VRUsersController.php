@@ -84,7 +84,7 @@ class VRUsersController extends Controller
      * PUT /vrusers/{id}
      *
      * @param  int $id
-     * @return Response
+     * @return mixed
      */
     public function adminUpdate($id)
     {
@@ -96,19 +96,15 @@ class VRUsersController extends Controller
         $config['item']->pluck('id')->toArray();
 
         $this->validate(request(), [
-            'first_name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'phone' => 'digits:8',
+            'phone' => 'required|digits:8',
         ]);
-
-        $config['message'] = 'Vartotojas sėkmingai atnaujintas';
 
         $record->update($data);
 
-        $config->session()->flash('message', 'User was successfully added!');
-
-        return view('admin.adminUsersEdit');
+        return redirect('/admin/users/'. $id .'/')->with('message', 'Vartotojas sėkmingai atnaujintas!');
     }
 
     /**

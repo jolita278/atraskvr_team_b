@@ -3,6 +3,7 @@
 @section('adminUsersSingle')
     <div class="container">
         <h2>Įrašo duomenys</h2>
+        <div>@include('error-notification')</div>
 
         <table class="table table-hover">
             <thead>
