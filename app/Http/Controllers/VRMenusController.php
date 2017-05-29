@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\VRLanguages;
 use App\Models\VRMenus;
 use Illuminate\Routing\Controller;
 
@@ -38,7 +39,9 @@ class VRMenusController extends Controller {
 	 */
 	public function adminCreate()
 	{
-		//
+	    $data['routes'] = $this->getRoutesData();
+        $data['languages'] = VRLanguages::pluck('name', 'id')->toArray();
+        return view('admin.adminMenusCreate', $data);
 	}
 
 	/**
@@ -49,7 +52,14 @@ class VRMenusController extends Controller {
 	 */
 	public function adminStore()
 	{
-		//
+        $data = request()->all();
+        $record = VRMenus::create(array(
+            'sequence' => $data['sequence'],
+        ));
+        $record->ingredientsConnectionData()->sync($data['ingredients']);
+
+
+        return view('admin.adminMenusCreate', $record->toArray());
 	}
 
 	/**
