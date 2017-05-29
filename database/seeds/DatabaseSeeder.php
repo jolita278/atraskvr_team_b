@@ -18,9 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoriesTranslationsSeeder::class);
         $this->call(PagesSeeder::class);
         $this->call(PagesTranslationsSeeder::class);
-
-
-
     }
 }
 

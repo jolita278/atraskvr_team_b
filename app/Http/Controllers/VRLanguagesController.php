@@ -15,15 +15,9 @@ class VRLanguagesController extends Controller
      */
     public function adminIndex()
     {
-        $configuration = $this->getRoutesData();
+        $configuration ['listName'] = 'Kalbų';
+        $configuration ['ignore'] = '';
         $configuration ['list'] = VRlanguages::get()->toArray();
-        return view('admin.adminLanguagesList', $configuration);
-    }
-
-    public function getRoutesData()
-    {
-        $configuration = [];
-        $configuration ['languagesList'] = 'app.admin.languages.index';
-        return $configuration;
-    }
+        return view('admin.adminList', $configuration);
+    }   
 }

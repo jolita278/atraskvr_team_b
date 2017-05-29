@@ -7,6 +7,6 @@
     <a href="{{ url('/admin/orders/')}}">Orders</a><br/>
     <a href="{{ url('/admin/users/')}}">Users</a><br/>
     <a href="{{ url('/admin/languages/')}}">Languages</a><br/>
-    <a href="{{ url('/admin/')}}">Menus</a><br/>
+    <a href="{{ url('/admin/menus/')}}">Menus</a><br/>
     </div>
 </div>
