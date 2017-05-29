@@ -23,21 +23,30 @@ class VRPages extends CoreModel
 
     }*/
     public function translationsData()
-        {
+    {/*
+        if (length(request()->segment(5))) {
 
-            $languageCode = request()->segment(5);
+            return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->where('language_id', $languageCode);}
+        else {
+                return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->app()->getLocale();
+            }*/
 
-            //dd($languageCode);
-            return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->where('language_id',$languageCode);
+        $languageCode = request()->segment();
+        dd($languageCode);
+
         }
 
 
-    public function resourcesConnectionData()
+
+
+    public
+    function resourcesConnectionData()
     {
         return $this->belongsToMany(VRResources::class, 'vr_pages_resources_conn', 'page_id', 'resource_id');
     }
 
-    public function categoryPageData()
+    public
+    function categoryPageData()
     {
         return $this->hasOne(VRCategories::class, 'id', 'category_id');
     }
