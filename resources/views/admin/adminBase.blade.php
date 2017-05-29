@@ -68,7 +68,7 @@
 @yield('pages')
 @yield('adminUsersList')
 @yield('adminLanguagesList')
-@yield('adminCategoriesList')
+@yield('adminList')
 @yield('adminUsersSingle')
 @yield('adminUsersEdit')
 @yield('adminUpload')
