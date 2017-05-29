@@ -96,19 +96,15 @@ class VRUsersController extends Controller
         $config['item']->pluck('id')->toArray();
 
         $this->validate(request(), [
-            'first_name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'phone' => 'digits:8',
+            'phone' => 'required|digits:8',
         ]);
-
-        $config['message'] = 'Vartotojas sėkmingai atnaujintas';
 
         $record->update($data);
 
-        $config->session()->flash('message', 'User was successfully added!');
-
-        return view('admin.adminUsersEdit');
+        return view('admin.adminUsersEdit', $config)->with('message', 'Vartotojas sėkmingai atnaujintas!');
     }
 
     /**

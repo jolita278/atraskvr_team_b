@@ -15,7 +15,7 @@ class PagesSeeder extends Seeder
         $pages = [
             ["category_id" => "apie", "id" => "apie"],
             ["category_id" => "apie", "id" => "about"],
-            ["category_id" => "apie", "id" => "O проекте"],
+            ["category_id" => "apie", "id" => "O_проекте"],
             ["category_id" => "kontaktai", "id" => "kontaktai"],
             ["category_id" => "kontaktai", "id" => "contact"],
             ["category_id" => "kontaktai", "id" => "Kонтакты"],
