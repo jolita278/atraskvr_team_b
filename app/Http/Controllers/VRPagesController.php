@@ -19,9 +19,13 @@ class VRPagesController extends Controller
     public function adminIndex()
     {
         $config = [];
+        $config =$this->getRoutesData();
         $config['routeShowDelete'] = 'app.admin.pages.showDelete';
         $config['routeEdit'] = 'app.admin.pages.edit';
         $config['list'] = VRPages::with(['translationsData'])->get()->toArray();
+        $config['listName'] = 'puslaiu';
+        $config['ignore'] = 'translations_data';
+        $config['url'] = 'admin/pages/create';
         //$config['list']= VRPages::get()->toArray();
 
         //dd($config);
@@ -79,7 +83,9 @@ class VRPagesController extends Controller
      */
     public function adminShow($id)
     {
-        return view('admin.adminPagesSingle');
+        $config = $this->getRoutesData();
+        $config ['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
+        return view('admin.adminPagesSingle', $config);
     }
 
     /**
@@ -91,8 +97,12 @@ class VRPagesController extends Controller
      */
     public function adminEdit($id)
     {
-        //$config['language']= VRPagesTranslations::pluck('language_id', 'id')->toArray();
-        return view('admin.adminPagesEdit');
+        $config ['single']= VRPages::with(['translationsData'])->find($id)->toArray();
+        $config['category'] = VRCategories::pluck('id','id')->toArray();
+        $config['resource']= VRResources::pluck('path', 'id')->toArray();
+        $config['language']=VRLanguages::pluck('name','id')->toArray();
+
+        return view('admin.adminPagesEdit', $config);
     }
 
     /**
@@ -119,4 +129,15 @@ class VRPagesController extends Controller
         //
     }
 
+    public function getRoutesData()
+    {
+        $config= [];
+        $config ['usersList'] = 'app.admin.pages.index';
+        $config ['showDelete'] = 'app.admin.pages.showDelete';
+        $config ['edit'] = 'app.admin.pages.edit';
+        return $config;
+    }
+
+
 }
+
