@@ -19,10 +19,10 @@ class CreateVrUsersTable extends Migration {
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('first_name');
-			$table->string('last_name');
-			$table->string('email')->unique('email_UNIQUE');
-			$table->string('password');
-			$table->string('phone', 45);
+			$table->string('last_name')->nullable();
+			$table->string('email')->unique('email_UNIQUE')->nullable();
+			$table->string('password')->nullable();
+			$table->string('phone', 45)->nullable();
 			$table->string('remember_token', 100)->nullable();
 		});
 	}

@@ -12,10 +12,8 @@
             <thead>
             <tr>
 
-                @foreach($list [0] as $key => $value)
-
+                @foreach($list[0] as $key => $value)
                     <th>{{$key}}</th>
-
                 @endforeach
 
             </tr>
