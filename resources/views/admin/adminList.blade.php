@@ -2,15 +2,18 @@
 
 @section('adminList')
     <div class="container">
-        <h2> -kintamasis- sąrašas</h2>
+        <h2> {{$listName}} sąrašas</h2>
         <table class="table table-hover">
+            @if(isset($url))
+            <a href="{{$url}}" class="btn btn-primary" role="button">
+                Pridėti naują</a>
+            <hr/>
+            @endif
             <thead>
             <tr>
 
-                @foreach($list [0] as $key => $value)
-
+                @foreach($list[0] as $key => $value)
                     <th>{{$key}}</th>
-
                 @endforeach
 
             </tr>
