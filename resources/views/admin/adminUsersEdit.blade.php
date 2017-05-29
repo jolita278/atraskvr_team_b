@@ -4,6 +4,8 @@
     <div class="container">
         <h2>Koreguoti vartotojo informaciją</h2>
 
+        <div>@include('error-notification')</div>
+
         {!!Form::open(['url' => route($usersEdit, $item['id'])]) !!}
         <br>
         {{Form::label('user_name', 'Vardas')}}<br>
@@ -25,6 +27,6 @@
         {!!Form::close() !!}
 
     </div>
-    <div>@include('error-notification')</div>
+
 
 @endsection

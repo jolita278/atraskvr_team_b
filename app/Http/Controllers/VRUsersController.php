@@ -84,7 +84,7 @@ class VRUsersController extends Controller
      * PUT /vrusers/{id}
      *
      * @param  int $id
-     * @return Response
+     * @return mixed
      */
     public function adminUpdate($id)
     {
@@ -104,7 +104,7 @@ class VRUsersController extends Controller
 
         $record->update($data);
 
-        return view('admin.adminUsersEdit', $config)->with('message', 'Vartotojas sėkmingai atnaujintas!');
+        return redirect('/admin/users/'. $id .'/')->with('message', 'Vartotojas sėkmingai atnaujintas!');
     }
 
     /**
