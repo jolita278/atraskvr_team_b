@@ -1,15 +1,15 @@
 <!doctype html>
 <head>
-   @include('meta')
 
 </head>
-<body style="background-color:lavender">
+<body style="background-color:lightgoldenrodyellow">
+
 @include('navbar')
 @include('header')
 
-@yield('usersOrders')
+@yield('page')
 
-
+@include('footer')
 
 </body>
 
