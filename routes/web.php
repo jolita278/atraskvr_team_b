@@ -60,8 +60,8 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::group(['prefix' => '{slug}'], function () {
             Route::get('/', ['uses' => 'VRPagesController@adminShow']);
-            Route::get('/edit', ['as' => 'app.admin.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
-            Route::post('/edit', ['uses' => 'VRPagesController@adminUpdate']);
+            Route::get('/edit/{lang}', ['as' => 'app.admin.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
+            Route::post('/edit/{lang}', ['uses' => 'VRPagesController@adminUpdate']);
             Route::delete('/', ['as' => 'app.admin.pages.showDelete', 'uses' => 'VRPagesController@adminDestroy']);
         });
 
@@ -80,5 +80,5 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-//TODO: choose slug or id in line 57
+
 
