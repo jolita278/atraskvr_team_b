@@ -2,42 +2,60 @@
 
 @section('adminPagesList')
     <div class="container">
-        <h2>Puslapių sąrašas</h2>
-
-        <div class="row">
-
-            <div class="col-md-12 text-center">
-                <a href="{{ url('/admin/pages/create/') }}" class="btn btn-primary" role="button">
+        <h2> {{$listName}} sąrašas</h2>
+        <table class="table table-hover">
+            @if(isset($url))
+                <a href="{{$url}}" class="btn btn-primary" role="button">
                     Pridėti naują</a>
                 <hr/>
+            @endif
+            <thead>
+            <tr>
 
-                @include('error-notification')
-            </div>
-            @foreach($list as $key => $array)
+                @foreach($list[0] as $key => $value)
+                    <th>{{$key}}</th>
+                @endforeach
+
+            </tr>
+
+            </thead>
+            <tbody>
+            @foreach ($list as $key => $record)
                 <tr>
-                    @foreach ($array['translations_data'] as $key => $record)
+                    @foreach ($record as $key => $value)
+                        @if ($key == $ignore)
 
-                        @foreach ($record as $key => $value)
-                            <td> {{$value}}</td>
+                        @else
 
-                        @endforeach
+                            <td>
+                                {{$value}}
+                            </td>
+                        @endif
+                    @endforeach
 
-                        {{--
-                                                       <td><a href="{{route($routeShowDelete, $value['id'])}}"
-                                                              class="btn btn-primary btn-sm">Peržiūrėti</a>
-                                                       </td>
+                    @if(isset($showDelete))
 
-                                                       <td><a href="{{route($routeEdit, $value['id'])}}" class="btn btn-info btn-sm">Koreguoti</a>
-                                                       </td>
+                        <td><a href="{{route($showDelete, $record['id'])}}"
+                               class="btn btn-primary btn-sm">Peržiūrėti</a>
+                        </td>
+                    @endif
 
-                                                       <td><a onclick="deleteItem('{{route($routeShowDelete, $value['id'])}}')"
-                                                              class="btn btn-info btn-sm">Ištrinti</a>
-                                                       </td>--}}
+                    @if(isset($edit))
+
+
+                        <td><a href="{{route($edit, [$record['id'], app()->getLocale()])}}" class="btn btn-info btn-sm">Koreguoti</a>
+                        </td>
+                    @endif
+                    @if(isset($showDelete))
+                        <td><a onclick="deleteItem('{{route($showDelete, $record['id'])}}')"
+                               class="btn btn-info btn-sm">Ištrinti</a>
+                        </td>
+                    @endif
                 </tr>
-            @endforeach
+
             @endforeach
 
-        </div>
+            </tbody>
+        </table>
+    </div>
 @endsection
-
-

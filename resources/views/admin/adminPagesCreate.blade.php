@@ -1,6 +1,6 @@
 @extends('admin.adminBase')
 
-@section('adminPagesEdit')
+@section('adminPagesCreate')
 
     <div class="container">
         <h2>Kurti naują puslapį</h2>
@@ -13,31 +13,30 @@
         {{Form::label('page', 'Resursai:')}}
         <br>
         {{Form::select('resource_id' , $resource)}}
-        <br>
+        <br/>
         {{Form::label('page', 'Kalbos:')}}
         <br>
         {{Form::select('language_id',$language)}}
         <br/>
         {{Form::label('page', 'Pavadinimas:')}}
-        <br>
-        {{Form::text('title')}}
+        <br/>
+        {{Form::textarea('title',null,['size' => '40x1'])}}
         <br/>
         {{Form::label('page', 'Aprasymas trumpas:')}}
-        <br>
-        {{Form::textarea('description_short',null, ['size' => '30x4']) }}
+        <br/>
+        {{Form::textarea('description_short',null, ['size' => '40x3']) }}
         <br/>
         {{Form::label('page', 'Aprasymas ilgas:')}}
-        <br>
-        {{Form::textarea('description_long',null, ['size' => '50x8'])}}
+        <br/>
+        {{Form::textarea('description_long',null, ['size' => '40x8']) }}
         <br/>
         {{Form::label('page', 'SLUG:')}}
-        <br>
-        {{Form::text('slug')}}
+        <br/>
+        {{Form::textarea('slug',null, ['size' => '40x1'] )}}
+
         <br/>
         {{Form::submit('Patvirtinti') }}
         {!! Form::close() !!}
-
-
     </div>
 @endsection
 
