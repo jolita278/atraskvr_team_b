@@ -26,7 +26,7 @@
                                 <span class="pull-left">&nbsp;</span>
                                 {!! Form::open(['url'=>'/admin/upload/'.$resource->id, 'class'=>'pull-left']) !!}
                                 {!! Form::hidden('_method', 'DELETE') !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>'return confirm(\'Ar tikrai ketinate ištrinti?\')']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>'return confirm("Ar tikrai ketinate ištrinti?")']) !!}
                                 {!! Form::close() !!}
                             </div>
                             </p>
