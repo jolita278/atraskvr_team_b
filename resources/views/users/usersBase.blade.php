@@ -1,5 +1,6 @@
 <!doctype html>
 <head>
+   @include('meta')
 
 </head>
 <body style="background-color:lavender">
@@ -8,7 +9,7 @@
 
 @yield('usersOrders')
 
-@include('footer')
+
 
 </body>
 
