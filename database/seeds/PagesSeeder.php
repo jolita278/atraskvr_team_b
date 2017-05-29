@@ -19,24 +19,46 @@ class PagesSeeder extends Seeder
             ["category_id" => "kontaktai", "id" => "kontaktai"],
             ["category_id" => "kontaktai", "id" => "contact"],
             ["category_id" => "kontaktai", "id" => "Kонтакты"],
+
             ["category_id" => "patirciu-kambariai", "id" => "the_lab_lt"],
             ["category_id" => "patirciu-kambariai", "id" => "the_lab_en"],
             ["category_id" => "patirciu-kambariai", "id" => "the_lab_ru"],
+
             ["category_id" => "patirciu-kambariai", "id" => "fruit_ninja_lt"],
             ["category_id" => "patirciu-kambariai", "id" => "fruit_ninja_en"],
             ["category_id" => "patirciu-kambariai", "id" => "fruit_ninja_ru"],
+
             ["category_id" => "patirciu-kambariai", "id" => "space_pirate_trainer_lt"],
             ["category_id" => "patirciu-kambariai", "id" => "space_pirate_trainer_en"],
             ["category_id" => "patirciu-kambariai", "id" => "space_pirate_trainer_ru"],
+
             ["category_id" => "patirciu-kambariai", "id" => "tilt_brush_lt"],
             ["category_id" => "patirciu-kambariai", "id" => "tilt_brush_en"],
             ["category_id" => "patirciu-kambariai", "id" => "tilt_brush_ru"],
+
             ["category_id" => "patirciu-kambariai", "id" => "merry_snowballs_lt"],
             ["category_id" => "patirciu-kambariai", "id" => "merry_snowballs_en"],
             ["category_id" => "patirciu-kambariai", "id" => "merry_snowballs_ru"],
+
             ["category_id" => "patirciu-kambariai", "id" => "samsung_irklavimas_lt"],
             ["category_id" => "patirciu-kambariai", "id" => "samsung_irklavimas_en"],
             ["category_id" => "patirciu-kambariai", "id" => "samsung_irklavimas_ru"],
+
+            ["category_id" => "patirciu-kambariai", "id" => "hurl_lt"],
+            ["category_id" => "patirciu-kambariai", "id" => "hurl_en"],
+            ["category_id" => "patirciu-kambariai", "id" => "hurl_ru"],
+
+            ["category_id" => "patirciu-kambariai", "id" => "final_goalie_football_simulator_lt"],
+            ["category_id" => "patirciu-kambariai", "id" => "final_goalie_football_simulator_en"],
+            ["category_id" => "patirciu-kambariai", "id" => "final_goalie_football_simulator_ru"],
+
+            ["category_id" => "patirciu-kambariai", "id" => "project_cars_lt"],
+            ["category_id" => "patirciu-kambariai", "id" => "project_cars_en"],
+            ["category_id" => "patirciu-kambariai", "id" => "project_cars_ru"],
+
+            ["category_id" => "patirciu-kambariai", "id" => "ktu_parasparnis_lt"],
+            ["category_id" => "patirciu-kambariai", "id" => "ktu_parasparnis_en"],
+            ["category_id" => "patirciu-kambariai", "id" => "ktu_parasparnis_ru"],
         ];
 
         DB::beginTransaction ();
