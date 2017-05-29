@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Sukurti naują meniu įrašą</h2>
 
-        {!! Form::open(['url' => 'l']) !!}
+        {!! Form::open(['url' => route('app.admin.menus.create')]) !!}
         <br>
         {{ Form::label('sequence', 'Eiliškumas')}}<br>
         {{Form::text('sequence')}}
@@ -12,14 +12,14 @@
         {{ Form::label('parent', 'Tėvinis meniu')}}<br>
         {{Form::text('parent')}}
         <br>
-        {{ Form::label('name', 'Pavadinimas')}}<br>
-        {{Form::text('name')}}
+        {{ Form::label('title', 'Pavadinimas')}}<br>
+        {{Form::select('title', $pages)}}
         <br>
         {{ Form::label('slug', 'Nuoroda')}}<br>
         {{Form::text('slug')}}
         <br>
         {{ Form::label('language', 'Kalba')}}<br>
-        {{Form::select('slug', $languages)}}
+        {{Form::select('language', $languages)}}
         <br>
         <br>
 

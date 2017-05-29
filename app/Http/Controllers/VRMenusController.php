@@ -2,6 +2,9 @@
 
 use App\Models\VRLanguages;
 use App\Models\VRMenus;
+use App\Models\VRMenusTranslations;
+use App\Models\VRPages;
+use App\Models\VRPagesTranslations;
 use Illuminate\Routing\Controller;
 
 class VRMenusController extends Controller {
@@ -14,11 +17,11 @@ class VRMenusController extends Controller {
 	 */
 	public function adminIndex()
     {
-         $configuration = $this->getRoutesData();
+        $configuration = $this->getRoutesData();
         $configuration ['listName'] = 'Meniu punktų';
         $configuration ['list'] =  VRmenus::get()->toArray();
         $configuration ['ignore'] = '';
-        $configuration ['url'] = "url('admin/menus/create')";
+        $configuration ['url'] = url('admin/menus/create');
 
         return view('admin.adminList', $configuration);
     }
@@ -26,6 +29,7 @@ class VRMenusController extends Controller {
     public function getRoutesData()
     {
          $configuration = [];
+        $configuration ['list'] = 'app.admin.menus.index';
          $configuration ['showDelete'] = 'app.admin.menus.showDelete';
          $configuration ['edit'] = 'app.admin.menus.edit';
         return $configuration;
@@ -41,6 +45,7 @@ class VRMenusController extends Controller {
 	{
 	    $data['routes'] = $this->getRoutesData();
         $data['languages'] = VRLanguages::pluck('name', 'id')->toArray();
+        $data['pages'] = VRPagesTranslations::pluck('title', 'id')->toArray();
         return view('admin.adminMenusCreate', $data);
 	}
 
@@ -52,12 +57,23 @@ class VRMenusController extends Controller {
 	 */
 	public function adminStore()
 	{
-        $data = request()->all();
-        $record = VRMenus::create(array(
-            'sequence' => $data['sequence'],
-        ));
-        $record->ingredientsConnectionData()->sync($data['ingredients']);
+        $record['routes'] = $this->getRoutesData();
+        $record['languages'] = VRLanguages::pluck('name', 'id')->toArray();
+        $record['pages'] = VRPagesTranslations::pluck('title', 'id')->toArray();
 
+        $data = request()->all();
+
+        VRMenus::create(array(
+            'sequence' => $data['sequence'],
+            'parent' => $data['parent'],
+        ));
+        VRMenusTranslations::create(array(
+            'name' => $data['title'],
+            'slug' => $data['slug'],
+            'language_id' => $data['language'],
+        ));
+
+        //$record->menusTranslationsData()->sync($data['id']);
 
         return view('admin.adminMenusCreate', $record->toArray());
 	}
@@ -71,7 +87,11 @@ class VRMenusController extends Controller {
 	 */
 	public function adminShow($id)
 	{
-		//
+        $configuration = $this->getRoutesData();
+
+        $configuration ['single'] = VRMenus::find($id)->toArray();
+
+        return view('admin.adminMenuSingle', $configuration);
 	}
 
 	/**
@@ -83,7 +103,16 @@ class VRMenusController extends Controller {
 	 */
 	public function adminEdit($id)
 	{
-		//
+        $config = $this->getRoutesData();
+        $config['languages'] = VRLanguages::pluck('name', 'id')->toArray();
+        $config['pages'] = VRPagesTranslations::pluck('title', 'id')->toArray();
+
+        $config['item'] = VRMenus::find($id);
+        $config['item']->pluck('id')->toArray();
+
+        //$config['menuInfo'] = VRMenus::with('menusTranslationsData')->find($id)->toArray();
+
+        return view('admin.adminMenusEdit', $config);
 	}
 
 	/**

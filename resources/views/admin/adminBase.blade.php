@@ -24,6 +24,7 @@
 @yield('adminPagesEdit')
 @yield('adminPagesCreate')
 @yield('adminMenusCreate')
+@yield('adminMenusSingle')
 
 @include('footer')
 
