@@ -20,7 +20,9 @@ class VRUsersController extends Controller
     {
         $configuration = $this->getRoutesData();
         $configuration ['list'] = VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
-        return view('admin.adminUsersList', $configuration);
+        $configuration ['ignore'] = 'roles_connection_data';
+        $configuration ['listName'] = 'Prisiregistravusių vartotojų';
+        return view('admin.adminList', $configuration);
     }
 
     /**
@@ -130,8 +132,8 @@ class VRUsersController extends Controller
     {
         $configuration = [];
         $configuration ['usersList'] = 'app.admin.users.index';
-        $configuration ['usersShowDelete'] = 'app.admin.users.showDelete';
-        $configuration ['usersEdit'] = 'app.admin.users.edit';
+        $configuration ['showDelete'] = 'app.admin.users.showDelete';
+        $configuration ['edit'] = 'app.admin.users.edit';
         return $configuration;
     }
 }
