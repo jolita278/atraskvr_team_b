@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\DB;
 
 class PagesTranslationsSeeder extends Seeder
 {
-        /**
-         * Run the database seeds.
-         *
-         * @return void
-         */
-        public function run()
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
     {
         $pagesTranslations = [
             ["page_id" => "apie", "language_id" => "lt", "title" => "Apie", "description_short" => "Virtuali realybė vis labiau skverbiasi į mūsų kasdienybę ir visas sritis nuo pramogų iki mokslo. todėl pristatome unikalią galimybę rytojų pamatyti jau dabar! Jaudinanti ir įtraukianti patirtis garantuota visiems.", "description_long" => "Virtuali realybė vis labiau skverbiasi į mūsų kasdienybę ir visas sritis nuo pramogų iki mokslo. todėl pristatome unikalią galimybę rytojų pamatyti jau dabar! Jaudinanti ir įtraukianti patirtis garantuota visiems - ir pirmą kartą išmėginsiantiems virtualią realybę, ir tiems, kurie jau žino kas tai yra. 10 skirtingų patirčių ir net 60 minučių įspūdžių, adrenalino ir atradimų laukia kiekvieno apsilankiusiojo. Paruošėme trijų skirtingų sudėtingumo lygių patirtis - nuo irklavimo Galvės ežere ar leidimosi parašiutu iki Mini golfo žaidimo ant pilies sienų ar stebuklingo gėrimo gamybos. Tačiau neabejojame, jog norėsi išbandyti visas. Virtuali realybė suteikia progą pažvelgti į pasaulį kitomis akimis ir iš paprasto stebėtojo virsti veiksmo dalyviu. Aukštos kokybės grafika, realūs vaizdai ir galimybė interaktyviai dalyvauti patirtyje tiesiog įtraukia! Tad ateik, užsidėk VR akinius ir atsidurk kitame pasaulyje, kur pojūčiai yra visai ne virtualūs! Pasiimk ir draugą, kad palaikytų už rankos, nes įspūdžių netrūks.", "slug" => "apie"],
@@ -64,7 +64,7 @@ class PagesTranslationsSeeder extends Seeder
 
             ];
 
-        DB::beginTransaction ();
+            DB::beginTransaction();
         try {
             foreach ($pagesTranslations as $pageData) {
                 $role = VRPagesTranslations::where ('slug', $pageData['slug'])->first ();
@@ -72,10 +72,10 @@ class PagesTranslationsSeeder extends Seeder
                     VRPagesTranslations::create ($pageData);
             }
         } catch (\Exception $e) {
-            DB::rollback ();
-            throw new Exception($e->getMessage ());
+            DB::rollback();
+            throw new Exception($e->getMessage());
         }
-        DB::commit ();
+        DB::commit();
     }
 
 }

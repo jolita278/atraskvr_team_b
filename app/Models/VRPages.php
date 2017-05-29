@@ -17,10 +17,18 @@ class VRPages extends CoreModel
      */
     protected $fillable = ['id', 'category_id', 'resource_id'];
 
-    public function translationsData()
+    /*public function translationsData()
     {
         return $this->hasMany(VRPagesTranslations::class, 'page_id', 'id')->with('languageData');
-    }
+
+    }*/
+    public function translationsData()
+        {
+            $languageCode = request()->segment(5);
+
+            //dd($languageCode);
+            return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->where('language_id',$languageCode);
+        }
 
     public function resourcesConnectionData()
     {

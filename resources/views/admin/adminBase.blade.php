@@ -1,7 +1,9 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
 <head>
+
    @include('meta')
+
 </head>
 <body style="background-color:lightblue">
 
@@ -22,8 +24,6 @@
 @yield('adminPagesEdit')
 @yield('adminPagesCreate')
 @yield('adminMenusCreate')
-
-
 
 @include('footer')
 
