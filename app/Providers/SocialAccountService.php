@@ -40,7 +40,7 @@ class SocialAccountService
                 $user = VRUsers::create([
                     'id' => uuid::uuid4(),
                     'email' => $providerUser->getEmail(),
-                    'first_name' => $providerUser->getName(),
+                    'user_name' => $providerUser->getName(),
                     'last_name' => $providerUser->getNickname(),
                 ]);
             }
