@@ -2,7 +2,7 @@
 
 @section('adminList')
     <div class="container">
-        <h2> -kintamasis- sąrašas</h2>
+        <h2> {{$listName}} sąrašas</h2>
         <table class="table table-hover">
             <thead>
             <tr>
