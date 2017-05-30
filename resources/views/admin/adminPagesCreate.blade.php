@@ -7,12 +7,15 @@
 
         {!!Form::open(['url' => route('app.admin.pages.create')]) !!}
         {{Form::label('page', 'Puslapio kategorija:')}}
+        <br>
         {{Form::select('category_id', $category)}}
         <br/>
         {{Form::label('page', 'Resursai:')}}
+        <br>
         {{Form::select('resource_id' , $resource)}}
         <br/>
         {{Form::label('page', 'Kalbos:')}}
+        <br>
         {{Form::select('language_id',$language)}}
         <br/>
         {{Form::label('page', 'Pavadinimas:')}}
@@ -30,6 +33,7 @@
         {{Form::label('page', 'SLUG:')}}
         <br/>
         {{Form::textarea('slug',null, ['size' => '40x1'] )}}
+
         <br/>
         {{Form::submit('Patvirtinti') }}
         {!! Form::close() !!}

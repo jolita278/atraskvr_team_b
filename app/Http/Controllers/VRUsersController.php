@@ -20,7 +20,9 @@ class VRUsersController extends Controller
     {
         $configuration = $this->getRoutesData();
         $configuration ['list'] = VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
-        return view('admin.adminUsersList', $configuration);
+        $configuration ['ignore'] = 'roles_connection_data';
+        $configuration ['listName'] = 'Prisiregistravusių vartotojų';
+        return view('admin.adminList', $configuration);
     }
 
     /**
@@ -84,7 +86,7 @@ class VRUsersController extends Controller
      * PUT /vrusers/{id}
      *
      * @param  int $id
-     * @return Response
+     * @return mixed
      */
     public function adminUpdate($id)
     {
@@ -96,19 +98,15 @@ class VRUsersController extends Controller
         $config['item']->pluck('id')->toArray();
 
         $this->validate(request(), [
-            'first_name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'phone' => 'digits:8',
+            'phone' => 'required|digits:8',
         ]);
-
-        $config['message'] = 'Vartotojas sėkmingai atnaujintas';
 
         $record->update($data);
 
-        $config->session()->flash('message', 'User was successfully added!');
-
-        return view('admin.adminUsersEdit');
+        return redirect('/admin/users/'. $id .'/')->with('message', 'Vartotojas sėkmingai atnaujintas!');
     }
 
     /**
@@ -134,8 +132,8 @@ class VRUsersController extends Controller
     {
         $configuration = [];
         $configuration ['usersList'] = 'app.admin.users.index';
-        $configuration ['usersShowDelete'] = 'app.admin.users.showDelete';
-        $configuration ['usersEdit'] = 'app.admin.users.edit';
+        $configuration ['showDelete'] = 'app.admin.users.showDelete';
+        $configuration ['edit'] = 'app.admin.users.edit';
         return $configuration;
     }
 }

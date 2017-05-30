@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -78,7 +80,33 @@ Route::group(['prefix' => 'admin'], function () {
             Route::delete('/', ['as' => 'app.admin.orders.showDelete', 'uses' => 'VROrdersController@adminDestroy']);
         });
     });
+
+    Route::group(['prefix' => 'menus'], function () {
+        Route::get('/', ['as' => 'app.admin.menus.index', 'uses' => 'VRMenusController@adminIndex']);
+        Route::get('/create', ['as' => 'app.admin.menus.create', 'uses' => 'VRMenusController@adminCreate']);
+        Route::post('/create', ['uses' => 'VRMenusController@adminStore']);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/', ['uses' => 'VRMenusController@adminShow']);
+            Route::get('/edit', ['as' => 'app.admin.menus.edit', 'uses' => 'VRMenusController@adminEdit']);
+            Route::post('/edit', ['uses' => 'VRMenusController@adminUpdate']);
+            Route::delete('/', ['as' => 'app.admin.menus.showDelete', 'uses' => 'VRMenusController@adminDestroy']);
+        });
+    });
 });
 
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', ['as' => 'app.user.orders.index', 'uses' => 'VROrdersController@index']);
 
+    Route::group(['prefix' => 'orders'], function () {
+        Route::get('/', ['as' => 'app.user.orders.index', 'uses' => 'VROrdersController@index']);
+        Route::get('/create', ['as' => 'app.user.orders.create', 'uses' => 'VROrdersController@create']);
+        Route::post('/create', ['uses' => 'VROrdersController@adminStore']);
+
+        Route::group(['prefix' => '{id}'], function () {
+            Route::get('/', ['uses' => 'VROrdersController@adminShow']);
+            Route::delete('/', ['as' => 'app.user.orders.showDelete', 'uses' => 'VROrdersController@destroy']);
+        });
+    });
+});
 
