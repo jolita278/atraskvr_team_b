@@ -25,6 +25,16 @@ class VRMenus extends CoreModel
      */
     public function menusTranslationsData()
     {
-        return $this->belongsToMany(VRMenusTranslations::class, 'pm_pizza_ingredients_conn', 'pizza_id', 'ingredients_id');
+        return $this->belongsToMany(VRMenusTranslations::class, 'vr_menus_translations', 'menu_id', 'id');
+    }
+    public function translationsData()
+    {
+        if(request()->segment(5)){
+            $languageCode = request()->segment(5);
+        }
+
+
+        //dd($languageCode);
+        return $this->hasOne(VRMenusTranslations::class, 'menu_id', 'id')->where('language_id', $languageCode);
     }
 }
