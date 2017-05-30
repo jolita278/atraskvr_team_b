@@ -20,7 +20,7 @@ class VRUsersController extends Controller
     {
         $configuration = $this->getRoutesData();
         $configuration ['list'] = VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
-        $configuration ['ignore'] = 'roles_connection_data';
+        $configuration ['ignore'] = '';
         $configuration ['listName'] = 'Prisiregistravusių vartotojų';
         return view('admin.adminList', $configuration);
     }

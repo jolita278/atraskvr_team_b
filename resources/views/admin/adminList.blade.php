@@ -5,16 +5,16 @@
         <h2> {{$listName}} sąrašas</h2>
         <table class="table table-hover">
             @if(isset($url))
-            <a href="{{$url}}" class="btn btn-primary" role="button">
-                Pridėti naują</a>
-            <hr/>
+                <a href="{{$url}}" class="btn btn-primary" role="button">
+                    Pridėti naują</a>
+                <hr/>
             @endif
             <thead>
             <tr>
 
-                @foreach($list[0] as $key => $value)
-                    <th>{{$key}}</th>
-                @endforeach
+            @foreach($list[0] as $key => $value)
+                        <th>{{$key}}</th>
+            @endforeach
 
             </tr>
 
@@ -25,12 +25,34 @@
                     @foreach ($record as $key => $value)
                         @if ($key == $ignore)
 
-                        @else
 
+                        @elseif($key == 'roles_connection_data')
+
+                            @foreach($record['roles_connection_data'] as $role)
+
+                                <td>{{$role['name']}}</td>
+                            @endforeach
+
+                        @elseif($key == 'category_translations')
+                            @foreach($record['category_translations'] as $translation)
+
+                                <td>{{$translation['name']}}</td>
+                            @endforeach
+
+                        @elseif($key == 'menus_translations_data')
+')
+                            @foreach($record['menus_translations_data'] as $translation)
+
+                                <td>{{$translation['name']}}</td>
+                            @endforeach
+
+                        @else
                             <td>
                                 {{$value}}
                             </td>
                         @endif
+
+
                     @endforeach
 
                     @if(isset($showDelete))
@@ -58,4 +80,3 @@
         </table>
     </div>
 @endsection
-
