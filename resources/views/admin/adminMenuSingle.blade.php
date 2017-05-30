@@ -1,6 +1,6 @@
 @extends('admin.adminBase')
 
-@section('adminUsersSingle')
+@section('adminMenusSingle')
     <div class="container">
         <h2>Įrašo duomenys</h2>
         <div>@include('error-notification')</div>

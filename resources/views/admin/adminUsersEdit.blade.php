@@ -6,7 +6,7 @@
 
         <div>@include('error-notification')</div>
 
-        {!!Form::open(['url' => route($usersEdit, $item['id'])]) !!}
+        {!!Form::open(['url' => route($edit, $item['id'])]) !!}
         <br>
         {{Form::label('user_name', 'Vardas')}}<br>
         {{Form::text('user_name',$item['user_name'])}}
@@ -23,7 +23,7 @@
         <br>
         <br>
         {{Form::submit('Patvirtinti') }} {{--TODO:: button reset--}}
-        <a href="{{route($usersList)}}" class="btn">Grįžti</a>
+        <a href="{{route($list)}}" class="btn">Grįžti</a>
         {!!Form::close() !!}
 
     </div>

@@ -131,7 +131,7 @@ class VRUsersController extends Controller
     public function getRoutesData()
     {
         $configuration = [];
-        $configuration ['usersList'] = 'app.admin.users.index';
+        $configuration ['list'] = 'app.admin.users.index';
         $configuration ['showDelete'] = 'app.admin.users.showDelete';
         $configuration ['edit'] = 'app.admin.users.edit';
         return $configuration;
