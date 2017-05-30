@@ -58,7 +58,7 @@ class VRUsersController extends Controller
     {
         $configuration = $this->getRoutesData();
 
-        $configuration ['single'] = VRUsers::find($id)->toArray();
+        $configuration ['single'] = VRUsers::with(['userRoles'])->find($id)->toArray();
 
         return view('admin.adminUsersSingle', $configuration);
     }
