@@ -80,6 +80,7 @@
         </nav>
 
         @yield('content')
+        @yield('error')
     </div>
 
     <!-- Scripts -->
