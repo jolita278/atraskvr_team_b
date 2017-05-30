@@ -2,6 +2,7 @@
 
 
 use App\Models\VRUsers;
+use App\Models\VRUsersRolesConnections;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 
@@ -21,7 +22,7 @@ class VRUsersController extends Controller
         $configuration = $this->getRoutesData();
         $configuration ['list'] = VRUsers::with(['rolesConnectionData'])->orderBy('updated_at', 'desc')->get()->toArray();
         $configuration ['ignore'] = '';
-        $configuration ['listName'] = 'Prisiregistravusių vartotojų';
+        $configuration ['listName'] = 'Registered users list';
         return view('admin.adminList', $configuration);
     }
 
@@ -57,10 +58,12 @@ class VRUsersController extends Controller
     public function adminShow($id)
     {
         $configuration = $this->getRoutesData();
-
+        $configuration['array_key'] = 'roles';
+        $configuration['name'] = 'name';
+        $configuration['title'] = "User's record";
         $configuration ['single'] = VRUsers::with(['userRoles'])->find($id)->toArray();
 
-        return view('admin.adminUsersSingle', $configuration);
+        return view('admin.adminSingle', $configuration);
     }
 
     /**
@@ -118,14 +121,12 @@ class VRUsersController extends Controller
      */
     public function adminDestroy($id)
     {
-        VRUsers::destroy($id);
-
-        return json_encode(["success" => true, "id" => $id]);
+        if(VRUsers::destroy($id) and VRUsersRolesConnections::where('user_id', '=', $id)->delete())
+        return redirect('/admin/user/')->with('message','Įrašas buvo ištrintas!');
     }
 
     /**
      * Get routes data
-     *
      * @return array
      */
     public function getRoutesData()
