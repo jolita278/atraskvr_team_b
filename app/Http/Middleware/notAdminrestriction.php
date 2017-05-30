@@ -15,5 +15,10 @@ class notAdminrestriction
      */
     public function handle($request, Closure $next)
     {
+        if (in_array('super-admin', auth()->user()->rolesConnectionData()->pluck('id')->toArray())) {
+            return $next($request);
+        }
+
+        abort(403,'No access');
     }
 }

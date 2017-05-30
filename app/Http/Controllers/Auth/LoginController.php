@@ -32,6 +32,7 @@ class LoginController extends Controller
         } elseif (in_array('user', auth()->user()->rolesConnectionData()->pluck('id')->toArray())) {
             return '/user/orders/create';
         }
+            return '/';
 
     }
 
