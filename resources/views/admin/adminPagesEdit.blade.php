@@ -5,7 +5,7 @@
     <div class="container">
         <h2>Kurti naują puslapį</h2>
 
-        {!!Form::open(['url' => route('app.admin.pages.create')]) !!}
+        {!!Form::open(['url' => route('app.admin.pages.edit', ['id',$languageCode])]) !!}
         {{Form::label('page', 'Puslapio kategorija:')}}
         {{Form::select('category_id', $category, $single['category_id'])}}
         <br/>
@@ -17,7 +17,7 @@
         <br/>
         {{Form::label('page', 'Pavadinimas:')}}
         <br/>
-        {{Form::textarea('title',null,['size' => '40x1'])}}
+        {{Form::textarea('title',$single['translations_data']['title'],['size' => '40x1'])}}
         <br/>
         {{Form::label('page', 'Aprasymas trumpas:')}}
         <br/>
@@ -25,13 +25,13 @@
         <br/>
         {{Form::label('page', 'Aprasymas ilgas:')}}
         <br/>
-        {{Form::textarea('description_long',null, ['size' => '40x8']) }}
+        {{Form::textarea('description_long',$single['translations_data']['description_long'], ['size' => '40x8']) }}
         <br/>
         {{Form::label('page', 'SLUG:')}}
         <br/>
-        {{Form::textarea('slug',null, ['size' => '40x1'] )}}
+        {{Form::textarea('slug',$single['translations_data']['slug'], ['size' => '40x1'] )}}
         <br/>
-        {{Form::submit('Patvirtinti') }}
+        {{Form::submit('Atnaujinti') }}
         {!! Form::close() !!}
 
     </div>
