@@ -6,9 +6,11 @@ use App\Models\VRMenusTranslations;
 use App\Models\VRPages;
 use App\Models\VRPagesTranslations;
 use Illuminate\Routing\Controller;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class VRMenusController extends Controller
 {
+    use ValidatesRequests;
 
     /**
      * Display a listing of the resource.
@@ -46,7 +48,7 @@ class VRMenusController extends Controller
     {
         $data['routes'] = $this->getRoutesData();
         $data['languages'] = VRLanguages::pluck('name', 'id')->toArray();
-        $data['pages'] = VRPagesTranslations::pluck('title', 'id')->toArray();
+        $data['pages'] = VRPagesTranslations::pluck('title', 'title')->toArray();
         return view('admin.adminMenusCreate', $data);
     }
 
@@ -60,23 +62,29 @@ class VRMenusController extends Controller
     {
         $record['routes'] = $this->getRoutesData();
         $record['languages'] = VRLanguages::pluck('name', 'id')->toArray();
-        $record['pages'] = VRPagesTranslations::pluck('title', 'id')->toArray();
+        $record['pages'] = VRPagesTranslations::pluck('title', 'title')->toArray();
 
         $data = request()->all();
 
-        VRMenus::create(array(
+        $menuRecord = VRMenus::create(array(
             'sequence' => $data['sequence'],
             'parent' => $data['parent'],
         ));
+
         VRMenusTranslations::create(array(
+            'menu_id' => $menuRecord->id,
+            'new_window' => $data['new_window'],
             'name' => $data['title'],
             'slug' => $data['slug'],
             'language_id' => $data['language'],
         ));
 
-        //$record->menusTranslationsData()->sync($data['id']);
+        $this->validate(request(), [
+            'slug' => 'required|max:255|unique:vr_menus_translations',
+            'sequence' => 'digits:8|required|unique:vr_menus_translations',
+        ]);
 
-        return view('admin.adminMenusCreate', $record->toArray());
+        return redirect('admin.adminList')->with('message', 'Meniu įrašas sėkmingai sukurtas');
     }
 
     /**
@@ -125,7 +133,7 @@ class VRMenusController extends Controller
      */
     public function adminUpdate($id)
     {
-        //
+       //
     }
 
     /**
@@ -141,5 +149,6 @@ class VRMenusController extends Controller
 
         return json_encode(["success" => true, "id" => $id]);
     }
+
 
 }
