@@ -17,4 +17,24 @@ class VRMenus extends CoreModel
      * @var array
      */
     protected $fillable = ['id', 'new_window', 'sequence', 'parent'];
+
+    /**
+     * Returns Ingredients data
+     * @return mixed
+     *
+     */
+    public function menusTranslationsData()
+    {
+        return $this->belongsToMany(VRMenusTranslations::class, 'vr_menus_translations', 'menu_id', 'id');
+    }
+    public function translationsData()
+    {
+        if(request()->segment(5)){
+            $languageCode = request()->segment(5);
+        }
+
+
+        //dd($languageCode);
+        return $this->hasOne(VRMenusTranslations::class, 'menu_id', 'id')->where('language_id', $languageCode);
+    }
 }
