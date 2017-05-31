@@ -2,7 +2,7 @@
 
 @section('adminOrdersList')
     <div class="container">
-        <h2>Užsakymų sąrašas</h2>
+        <h2>Orders list</h2>
 
 
     </div>

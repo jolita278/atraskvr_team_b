@@ -23,9 +23,9 @@ class VRPagesController extends Controller
         $config['routeShowDelete'] = 'app.admin.pages.showDelete';
         $config['routeEdit'] = 'app.admin.pages.edit';
         $config['list'] = VRPages::with(['translationsData'])->get()->toArray();
-        $config['listName'] = 'puslaiu';
+        $config['listName'] = 'Pages list';
         $config['ignore'] = 'translations_data';
-        $config['url'] = 'admin/pages/create';
+        $config['url'] = url('admin/pages/create');
         //$config['list']= VRPages::get()->toArray();
 
         //dd($config);
