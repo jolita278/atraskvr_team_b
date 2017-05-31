@@ -183,6 +183,8 @@ class VRMenusController extends Controller
     public function index()
     {
         VRMenus::with('translationsData')->find()->get();
+dd();
+        return view('welcome');
     }
 
 
