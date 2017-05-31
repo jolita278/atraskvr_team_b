@@ -5,19 +5,19 @@
 
         <h2>Edit menu</h2>
         <div>@include('error-notification')</div>
-        {!! Form::open(['url' => route($edit, [$item['id'], $languageCode])]) !!}
+        {!! Form::open(['url' => route($edit, ['id' => $item['id'], 'lang' => $languageCode])]) !!}
         <br>
-        {{ Form::label('language', 'Choose language')}}<br>
-        {{Form::select('language', $languages)}}
+        {{ Form::label('language_id', 'Choose language')}}<br>
+        {{Form::select('language_id', $languages, $languageCode)}}
         <br>
-        {{ Form::label('title', 'Choose title')}}<br>
-        {{Form::select('title', $pages, $translationItem[0]['name'])}}
+        {{ Form::label('name', 'Choose Name')}}<br>
+        {{Form::select('name', $pages, $item['translations_data']['name'])}}
         <br>
         {{ Form::label('parent', 'Parent')}}<br>
-        {{Form::text('parent', $item['parent'])}}
+        {{Form::select('parent', $parent, $item['parent'])}}
         <br>
         {{ Form::label('slug', 'Slug')}}<br>
-        {{Form::text('slug', $translationItem[0]['slug'])}}
+        {{Form::text('slug', $item['translations_data']['slug'])}}
         <br>
         {{ Form::label('sequence', 'Sequence')}}<br>
         {{Form::text('sequence', $item['sequence'])}}
