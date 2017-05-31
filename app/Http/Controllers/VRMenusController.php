@@ -174,6 +174,16 @@ class VRMenusController extends Controller
 
         return json_encode(["success" => true, "id" => $id]);
     }
+    /**
+     * Display a listing of the resource.
+     * GET /vrmenus
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        VRMenus::with('translationsData')->find()->get();
+    }
 
 
 
