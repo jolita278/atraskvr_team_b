@@ -21,8 +21,8 @@ class VRMenusController extends Controller
     public function adminIndex()
     {
         $configuration = $this->getRoutesData();
-        $configuration ['listName'] = 'Meniu punktų';
-        $configuration ['list'] = VRmenus::with(['menusTranslationsData'])->get()->toArray();
+        $configuration ['listName'] = 'Menus list';
+        $configuration ['list'] = VRmenus::with(['translations'])->get()->toArray();
         $configuration ['ignore'] = '';
         $configuration ['url'] = url('admin/menus/create');
 
@@ -97,10 +97,12 @@ class VRMenusController extends Controller
     public function adminShow($id)
     {
         $configuration = $this->getRoutesData();
-
-        $configuration ['single'] = VRMenus::find($id)->toArray();
-
-        return view('admin.adminMenuSingle', $configuration);
+        $configuration['array_key'] = 'pivot';
+        $configuration['name'] = 'name';
+        $configuration['language_id'] =
+        $configuration['title'] = "Menu with translations data";
+        $configuration ['single'] = VRMenus::with(['menusTranslationsData'])->find($id)->toArray();
+        return view('admin.adminSingle', $configuration);
     }
 
     /**

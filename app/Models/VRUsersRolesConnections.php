@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 
-class VRUsersRolesConnections extends CoreModel
+class VRUsersRolesConnections extends Model
 {
-    public $updated_at = false;
+
     /**
      * Table name
      * @var string
@@ -17,4 +18,9 @@ class VRUsersRolesConnections extends CoreModel
      * @var array
      */
     protected $fillable = ['user_id', 'role_id'];
+
+    public function roles()
+    {
+        return $this->hasOne(VRRoles::class, 'id', 'role_id');
+    }
 }

@@ -17,8 +17,15 @@ class VRMenusTranslations extends CoreModel
      */
     protected $fillable = ['id', 'menu_id', 'language_id', 'name', 'slug'];
 
+
+    public function translation()
+    {
+        return $this->hasOne(VRLanguages::class, 'id', 'language_id');
+    }
+
     public function pageData()
     {
         return $this->hasOne(VRMenus::class, 'id', 'menu_id');
     }
 }
+

@@ -15,7 +15,7 @@ class VRCategoriesController extends Controller {
     public function adminIndex()
     {
        // $configuration = $this->getRoutesData();
-        $configuration ['listName'] = 'Kategorijų';
+        $configuration ['listName'] = 'Categories list';
         $configuration ['list'] =  VRCategories::with(['categoryTranslations'])->get()->toArray();
         $configuration ['ignore'] = '';
 

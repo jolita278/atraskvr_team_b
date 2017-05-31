@@ -3,7 +3,7 @@
 @section('adminUpload')
 
     <div class="container">
-        <h2>Įkelti nuotrauką</h2></br>
+        <h2>Upload photo or video</h2></br>
         @include('error-notification')
 
         {!! Form::open(
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Įkelti') !!}
+            {!! Form::submit('Upload') !!}
 
         </div>
 
