@@ -3,10 +3,10 @@
 @section('adminPagesEdit')
 
     <div class="container">
-        <h2>Kurti naują puslapį</h2>
+        <h2>Redaguoti puslapį</h2>
 
-        {!!Form::open(['url' => route('app.admin.pages.edit', ['id',$languageCode])]) !!}
-        {{Form::label('page', 'Puslapio kategorija:')}}
+        {!!Form::open(['url' => route('app.admin.pages.edit', [$sing['id'],$languageCode])]) !!}
+              {{Form::label('page', 'Puslapio kategorija:')}}
         {{Form::select('category_id', $category, $single['category_id'])}}
         <br/>
         {{Form::label('page', 'Resursai:')}}

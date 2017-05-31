@@ -105,8 +105,11 @@ class VRPagesController extends Controller
         $config['category'] = VRCategories::pluck('id', 'id')->toArray();
         $config['resource'] = VRResources::pluck('path', 'id')->toArray();
         $config['language'] = VRLanguages::pluck('name', 'id')->toArray();
-        $config['languageCode'] = request()-> segment(5);
-//dd($config);
+        $config['languageCode'] = request()->segment(5);
+        $config['sing'] = VRPages::find($id)->toArray();
+
+
+        //dd($config);
         return view('admin.adminPagesEdit', $config);
     }
 
@@ -119,29 +122,27 @@ class VRPagesController extends Controller
      */
     public function adminUpdate($id)
     {
-       //$data = request()->all($id);
-      // dd($data);
+        $data = request()->all();
 
-       /* $recordPages = VRPages::find($id);
-        $data = request()->all($id);
-        $category_id -> $data['category_id'];
-        $recordPages->update($data);*/
+        $record = VRPages::find($id);
+        $record->update($data);
+
+        $translation = VRPagesTranslations::where('page_id', $id)->get()
+            ->where('language_id', $data['language_id'])
+            ->first();
+        //dd($translation->toArray());
+        //       dd($translation);
 
 
+        if ($translation) {
+            $translation->update($data);
+        } else {
+            $data['page_id'] = $record->id;
+            VRPagesTranslations::create($data);
+        }
 
 
-        /*if ($name == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Ingridiento pavadinimas" !'];
-            return view('admin.adminPizzaPartsEdit', $config);
-        } elseif ($calories == null) {
-            $config['error'] = ['id' => 'Klaida 00002', 'message' => 'Neužpildytas laukas "Kalorijos"!'];
-            return view('admin.adminPizzaPartsEdit', $config);
-        }*/
-
-        /*$record->update($data);
-        $config['success_message'] = ['id' => 'Įrašas sėkmingai atnaujintas! ', 'message' => 'Atnaujintas įrašas -  ' . $data['name']];
-        return view('admin.adminPizzaPartsEdit', $config);*/
-
+        return redirect('/admin/pages');
     }
 
     /**

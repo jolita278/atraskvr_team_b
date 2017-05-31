@@ -25,7 +25,6 @@ class VRPages extends CoreModel
     public function translationsData()
     {
 
-
         $languageCode = request()->segment(5);
         //dd($languageCode);
         return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->where('language_id', $languageCode);

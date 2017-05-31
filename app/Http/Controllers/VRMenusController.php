@@ -149,6 +149,7 @@ class VRMenusController extends Controller
         ]);
 
         $config->update($data);
+
         VRMenusTranslations::where('menu_id', $id)->update([
             'name' => $data['title'],
             'slug' => $data['slug'],

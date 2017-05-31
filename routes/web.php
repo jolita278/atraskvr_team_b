@@ -60,10 +60,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'notAdminRestriction
         Route::get('/create', ['as' => 'app.admin.pages.create', 'uses' => 'VRPagesController@adminCreate']);
         Route::post('/create', ['uses' => 'VRPagesController@adminStore']);
 
-        Route::group(['prefix' => '{slug}'], function () {
+        Route::group(['prefix' => '{id}'], function () {
             Route::get('/', ['uses' => 'VRPagesController@adminShow']);
             Route::get('/edit/{lang}', ['as' => 'app.admin.pages.edit', 'uses' => 'VRPagesController@adminEdit']);
-            Route::post('/edit/{lang}', ['as' => 'app.admin.pages.edit','uses' => 'VRPagesController@adminUpdate']);
+            Route::post('/edit/{lang}', ['uses' => 'VRPagesController@adminUpdate']);
             Route::delete('/', ['as' => 'app.admin.pages.showDelete', 'uses' => 'VRPagesController@adminDestroy']);
         });
 
