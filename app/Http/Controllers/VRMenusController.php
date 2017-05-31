@@ -167,10 +167,12 @@ class VRMenusController extends Controller
      */
     public function adminDestroy($id)
     {
+        VRMenusTranslations::destroy(VRMenusTranslations::where('menu_id',$id)->pluck('id')->toArray());
         VRMenus::destroy($id);
 
         return json_encode(["success" => true, "id" => $id]);
     }
+
 
 
 }

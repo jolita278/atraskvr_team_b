@@ -126,7 +126,10 @@ class VRPagesController extends Controller
      */
     public function adminDestroy($id)
     {
-        //
+        VRPagesTranslations::destroy(VRPagesTranslations::where('page_id',$id)->pluck('id')->toArray());
+        VRPages::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
     }
 
     public function getRoutesData()
