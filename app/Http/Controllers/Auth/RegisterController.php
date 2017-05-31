@@ -29,7 +29,16 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        if (in_array('super-admin', auth()->user()->rolesConnectionData()->pluck('id')->toArray())) {
+            return '/admin';
+        } elseif (in_array('user', auth()->user()->rolesConnectionData()->pluck('id')->toArray())) {
+            return '/user/orders/create';
+        }
+            return '/';
+
+    }
 
     /**
      * Create a new controller instance.

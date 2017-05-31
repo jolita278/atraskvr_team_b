@@ -148,7 +148,9 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN', 'atraskvr.dev'),
+
+    'domain' => env('SESSION_DOMAIN', 'atraskvr_team_b'),
+
 
     /*
     |--------------------------------------------------------------------------

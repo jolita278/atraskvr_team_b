@@ -11,19 +11,24 @@
 @include('admin.adminSideB')
 
 @yield('pages')
-@yield('adminUsersList')
-@yield('adminLanguagesList')
 @yield('adminList')
-@yield('adminUsersSingle')
-@yield('adminUsersEdit')
-@yield('adminUpload')
 @yield('adminResourcesList')
+@yield('adminUpload')
+@yield('adminSingle')
+@yield('adminUsersEdit')
+@yield('adminPagesCreate')
+@yield('adminPagesEdit')
+
+@yield('adminPagesSingle')
+{{--@yield('adminMenusSingle')--}}
+
+@yield('adminMenusCreate')
+@yield('adminMenusEdit')
+
+
 @yield('adminPagesList')
 @yield('adminOrdersList')
-@yield('adminPagesSingle')
-@yield('adminPagesEdit')
-@yield('adminPagesCreate')
-@yield('adminMenusCreate')
+
 
 @include('footer')
 

@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'notAdminRestriction']], function () {
     Route::get('/', ['as' => 'app.admin.orders.index', 'uses' => 'VROrdersController@adminIndex']);
 
     Route::group(['prefix' => 'users'], function () {
@@ -95,7 +95,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::group(['prefix' => 'user'], function () {
+Route::group(['prefix' => 'user', 'middleware' => ['auth', 'notUserRestriction']], function () {
     Route::get('/', ['as' => 'app.user.orders.index', 'uses' => 'VROrdersController@index']);
 
     Route::group(['prefix' => 'orders'], function () {

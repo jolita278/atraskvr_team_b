@@ -23,7 +23,7 @@ class VROrdersController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('users.usersOrders');
 	}
 
 	/**

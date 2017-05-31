@@ -1,6 +1,6 @@
 @extends('admin.adminBase')
 
-@section('adminUsersSingle')
+@section('adminMenusSingle')
     <div class="container">
         <h2>Įrašo duomenys</h2>
         <div>@include('error-notification')</div>
@@ -17,12 +17,12 @@
                     <td> {{$value}}</td>
                     @endforeach
                 </tr>
-                <a href="{{route($usersEdit, $single['id'])}}" class="btn btn-primary btn-sm">Koreguoti</a>
+                <a href="{{route($edit, $single['id'])}}" class="btn btn-primary btn-sm">Koreguoti</a>
 
-                <a onclick="deleteItem('{{route($usersShowDelete, $single['id'])}}')"
+                <a onclick="deleteItem('{{route($showDelete, $single['id'])}}')"
                    class="btn btn-info btn-sm">Ištrinti</a>
 
-                <a href="{{route($usersList)}}" class="btn btn-primary btn-sm">Grįžti</a>
+                <a href="{{route($list)}}" class="btn btn-primary btn-sm">Grįžti</a>
             </tbody>
         </table>
     </div>
