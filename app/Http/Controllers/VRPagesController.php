@@ -25,7 +25,7 @@ class VRPagesController extends Controller
         $config['list'] = VRPages::with(['translationsData'])->get()->toArray();
         $config['listName'] = 'Pages list';
         $config['ignore'] = 'translations_data';
-        $config['url'] = 'admin/pages/create';
+        $config['url'] = url('admin/pages/create');
         //$config['list']= VRPages::get()->toArray();
 
         //dd($config);
