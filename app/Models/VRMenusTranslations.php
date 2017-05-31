@@ -21,4 +21,10 @@ class VRMenusTranslations extends CoreModel
     {
         return $this->hasOne(VRLanguages::class, 'id', 'language_id');
     }
+
+    public function pageData()
+    {
+        return $this->hasOne(VRMenus::class, 'id', 'menu_id');
+    }
 }
+
