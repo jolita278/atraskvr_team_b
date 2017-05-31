@@ -17,8 +17,8 @@ class MenuTranslationsSeeder extends Seeder
             ["menu_id" => "apie", "language_id" => 'en', "name" => "About", "slug" => "about"],
             ["menu_id" => "apie", "language_id" => 'ru', "name" => "O проекте", "slug" => "O_проекте"],
 
-            ["menu_id" => "pradinis", "language_id" => 'lt', "name" => "Pradinis", "slug" => "apie"],
-            ["menu_id" => "pradinis", "language_id" => 'en', "name" => "Home", "slug" => "about"],
+            ["menu_id" => "pradinis", "language_id" => 'lt', "name" => "Pradinis", "slug" => "pradinis"],
+            ["menu_id" => "pradinis", "language_id" => 'en', "name" => "Home", "slug" => "home"],
             ["menu_id" => "pradinis", "language_id" => 'ru', "name" => "домашняя страница", "slug" => "домашняя_страница"],
 
             ["menu_id" => "virtualus_kambariai", "language_id" => 'lt', "name" => "Virtualūs Kambariai", "slug" => "virtualus_kambariai"],
@@ -66,7 +66,7 @@ class MenuTranslationsSeeder extends Seeder
             ["menu_id" => "project_cars", "language_id" => 'ru', "name" => "Project Cars", "slug" => "project_cars_ru"],
 
             ["menu_id" => "vieta_laikas", "language_id" => 'lt', "name" => "Vieta ir Laikas", "slug" => "vieta_ir_laikas"],
-            ["menu_id" => "vieta_laikas", "language_id" => 'en', "name" => "Location and Time", "slug" => "project_cars_en"],
+            ["menu_id" => "vieta_laikas", "language_id" => 'en', "name" => "Location and Time", "slug" => "location_time"],
             ["menu_id" => "vieta_laikas", "language_id" => 'ru', "name" => "Место и время", "slug" => "Место_и_время"],
 
             ["menu_id" => "bilietai", "language_id" => 'lt', "name" => "Bilietai", "slug" => "bilietai"],
