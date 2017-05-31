@@ -121,8 +121,10 @@ class VRUsersController extends Controller
      */
     public function adminDestroy($id)
     {
-        if(VRUsers::destroy($id) and VRUsersRolesConnections::where('user_id', '=', $id)->delete())
-        return redirect('/admin/user/')->with('message','Įrašas buvo ištrintas!');
+        VRUsersRolesConnections::destroy(VRUsersRolesConnections::where('user_id',$id)->pluck('id')->toArray());
+        VRUsers::destroy($id);
+
+        return json_encode(["success" => true, "id" => $id]);
     }
 
     /**

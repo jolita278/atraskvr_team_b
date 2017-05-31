@@ -72,13 +72,6 @@
                             <td><a onclick="deleteItem('{{route($showDelete, $record['id'])}}')"
                                 class="btn btn-info btn-sm">Delete</a>
                             </td>
-
-                            <td>
-                            {!! Form::open([route($showDelete, $record['id']), 'class'=>'pull-left']) !!}
-                            {!! Form::hidden('_method', 'DELETE') !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onclick'=>'return confirm("Ar tikrai ketinate ištrinti?")']) !!}
-                            {!! Form::close() !!}
-                            </td>
                     @endif
 
                 </tr>
