@@ -14,7 +14,7 @@
         {{Form::select('name', $pages, $item['translations_data']['name'])}}
         <br>
         {{ Form::label('parent', 'Parent')}}<br>
-        {{Form::select('parent', $parent, $item['parent'])}}
+        {{Form::select('parent', [ null => 'Choose parent'] + $parent, $item['parent'])}}
         <br>
         {{ Form::label('slug', 'Slug')}}<br>
         {{Form::text('slug', $item['translations_data']['slug'])}}
