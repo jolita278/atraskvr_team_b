@@ -22,14 +22,14 @@ class VRPagesController extends Controller
         $config = $this->getRoutesData();
         $config['routeShowDelete'] = 'app.admin.pages.showDelete';
         $config['routeEdit'] = 'app.admin.pages.edit';
-        $config['list'] = VRPages::with(['translationsData'])->get()->toArray();
+        $config['list'] = VRPages::with(['translationsInfo'])->get()->toArray();
         $config['listName'] = 'Pages list';
         $config['ignore'] = 'translations_data';
         $config['url'] = url('admin/pages/create');
         //$config['list']= VRPages::get()->toArray();
 
         //dd($config);
-        return view('admin.adminPagesList', $config);
+        return view('admin.adminList', $config);
     }
 
     /**
@@ -86,9 +86,13 @@ class VRPagesController extends Controller
      */
     public function adminShow($id)
     {
-        $config = $this->getRoutesData();
-        $config ['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
-        return view('admin.adminPagesSingle', $config);
+        $configuration = $this->getRoutesData();
+        $configuration['array_key'] = 'pivot';
+        $configuration['name'] = 'name';
+        $configuration['language_id'] =
+        $configuration['title'] = "Page with translations data";
+        $configuration ['single'] = VRPages::with(['translationsInfo'])->find($id)->toArray();
+        return view('admin.adminSingle', $configuration);
     }
 
     /**
@@ -101,7 +105,7 @@ class VRPagesController extends Controller
     public function adminEdit($id)
     {
         $config = [];
-        $config ['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
+        $config['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
         $config['category'] = VRCategories::pluck('id', 'id')->toArray();
         $config['resource'] = VRResources::pluck('path', 'id')->toArray();
         $config['language'] = VRLanguages::pluck('name', 'id')->toArray();
@@ -163,7 +167,7 @@ class VRPagesController extends Controller
     public function getRoutesData()
     {
         $config = [];
-        $config ['usersList'] = 'app.admin.pages.index';
+        $config ['list'] = 'app.admin.pages.index';
         $config ['showDelete'] = 'app.admin.pages.showDelete';
         $config ['edit'] = 'app.admin.pages.edit';
         return $config;

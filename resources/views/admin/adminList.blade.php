@@ -9,9 +9,13 @@
                     Add new</a>
                 <hr/>
             @endif
+
+
+
+                {{--{{ dd($list) }}--}}
+    @if($list)
             <thead>
             <tr>
-
             @foreach($list[0] as $key => $value)
                         <th>{{$key}}</th>
             @endforeach
@@ -22,10 +26,10 @@
             <tbody>
             @foreach ($list as $key => $record)
                 <tr>
+                    {{--{{dd($list)}}--}}
                     @foreach ($record as $key => $value)
 
                         @if ($key == $ignore)
-
 
                         @elseif($key == 'roles_connection_data')
 
@@ -35,6 +39,7 @@
                             @endforeach
 
                         @elseif($key == 'category_translations')
+
                             @foreach($record['category_translations'] as $translation)
 
                                 <td>{{$translation['name']}}</td>
@@ -45,6 +50,14 @@
                             @foreach($record['translations'] as $translation)
 
                                 <td>{{$translation['name']}}</td>
+
+                            @endforeach
+                        @elseif($key == 'translations_info')
+
+                            @foreach($record['translations_info'] as $translation)
+
+                                <td>{{$translation['title']}}</td>
+
                             @endforeach
 
                         @else
@@ -65,7 +78,7 @@
 
                     @if(isset($edit))
 
-                        <td><a href="{{route($edit, $record['id'])}}" class="btn btn-info btn-sm">Edit</a>
+                        <td><a href="{{route($edit, [$record['id'], app()->getLocale()])}}" class="btn btn-info btn-sm">Edit</a>
                         </td>
                     @endif
                     @if(isset($showDelete))
@@ -78,9 +91,14 @@
 
             @endforeach
 
+
+
             </tbody>
         </table>
     </div>
+    @else
+        {{'No items!'}}
+    @endif
 @endsection
 
 @section('scripts')

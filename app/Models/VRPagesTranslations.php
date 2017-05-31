@@ -26,6 +26,9 @@ class VRPagesTranslations extends CoreModel
     {
         return $this->hasOne(VRLanguages::class, 'id', 'language_id');
     }
-
+    public function translationInfo()
+    {
+        return $this->hasOne(VRLanguages::class, 'id', 'language_id');
+    }
 
 }

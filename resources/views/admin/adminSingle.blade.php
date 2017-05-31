@@ -11,25 +11,26 @@
             </thead>
             <tbody>
 
-            @foreach($single as $key => $record)
+            @foreach($single as $key => $value)
                 <tr>
                     {{--{{dd($single)}}--}}
                     <td class="col-md-2">{{$key}} </td>
 
-                    @if(is_array($record)&& $key == 'menus_translations_data')
 
+                    @if(is_array($value) && $key == 'translations_info')
                         <td>
-                            @foreach ($record as $item => $value)
-                                <li>{{dd($value)}}
-                                    {{$item[$key][$value]}}
+                            @foreach ($value as $translation_value)
+                                {{--TODO foreach--}}
+                                <li>
+
                                 </li>
                             @endforeach
                         </td>
 
-                    @elseif(is_array($record))
+                    @elseif(is_array($value))
 
                         <td>
-                            @foreach ($record as $item)
+                            @foreach ($value as $item)
                                 <li>
                                     {{$item[$array_key][$name]}}
                                 </li>
@@ -37,7 +38,7 @@
                         </td>
 
                     @else
-                        <td> {{$record}}</td>
+                        <td> {{$value}}</td>
                     @endif
 
 
@@ -45,7 +46,7 @@
             @endforeach
 
 
-            <a href="{{route($edit, $single['id'])}}" class="btn btn-primary btn-sm">Edit</a>
+            <a href="{{route($edit, [$single['id'], app()->getLocale()])}}" class="btn btn-primary btn-sm">Edit</a>
 
             <a onclick="deleteItem('{{route($showDelete, $single['id'])}}')"
                class="btn btn-info btn-sm">Delete</a>
