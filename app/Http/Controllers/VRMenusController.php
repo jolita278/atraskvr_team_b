@@ -115,14 +115,12 @@ class VRMenusController extends Controller
      */
     public function adminEdit($id)
     {
-
         $config = $this->getRoutesData();
-        $config['languages'] = VRLanguages::pluck('name', 'id')->toArray();
-        $config['pages'] = VRPagesTranslations::pluck('title', 'title')->toArray();
-        $config['parent'] = VRPagesTranslations::pluck('title', 'title')->toArray();
-
-        $config['item'] = VRMenus::with('translationsData')->find($id)->toArray();
         $config['languageCode'] = request()-> segment(5);
+        $config['languages'] = VRLanguages::pluck('name', 'id')->toArray();
+        $config['pages'] = VRPagesTranslations::where('language_id', $config['languageCode'])->pluck('title', 'title')->toArray();
+        $config['parent'] = VRPagesTranslations::where('language_id', $config['languageCode'])->pluck('title', 'title')->toArray();
+        $config['item'] = VRMenus::with('translationsData')->find($id)->toArray();
 
         return view('admin.adminMenusEdit', $config);
     }
@@ -138,10 +136,12 @@ class VRMenusController extends Controller
     {
         $data = request()->all();
         $record = VRMenus::with('translationsData')->find($id);
+
         /*$this->validate(request(), [
             'slug' => 'required|max:255',
             'sequence' => 'integer|required',
         ]);*/
+
         $record->update($data);
 
         $translations = VRMenusTranslations::where('menu_id', $id)->get()->where('language_id', $data['language_id'])->first();

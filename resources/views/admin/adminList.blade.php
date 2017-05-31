@@ -65,7 +65,7 @@
 
                     @if(isset($edit))
 
-                        <td><a href="{{route($edit, $record['id'])}}" class="btn btn-info btn-sm">Edit</a>
+                        <td><a href="{{route($edit, [$record['id'], app()->getLocale()])}}" class="btn btn-info btn-sm">Edit</a>
                         </td>
                     @endif
                     @if(isset($showDelete))
