@@ -2,13 +2,13 @@
 
 @section('adminResourcesList')
     <div class="container">
-        <h2>Nuotraukų ir video sąrašas</h2>
+        <h2>Photo and video gallery</h2>
 
         <div class="row">
             @if(count($vr_resources) > 0)
                 <div class="col-md-12 text-center">
                     <a href="{{ url('admin/upload/create') }}" class="btn btn-primary" role="button">
-                        Pridėti naują
+                        Add new
                     </a>
                     <hr/>
                     @include('error-notification')
@@ -34,7 +34,7 @@
                     </div>
                 </div>
             @empty
-                <p>Nėra įkeltų failų, <a href="{{ url('admin/upload/create') }}">Įkelti</a>?</p>
+                <h4>There is no uploaded files, <a href="{{ url('admin/upload/create') }}">Upload</a>?</h4>
             @endforelse
         </div>
         <div align="center">{!! $vr_resources->render() !!}
