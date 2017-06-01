@@ -41,7 +41,7 @@
                               {{--  {{dd($record['cover_image'])}} --}}
 
                                 <td>
-                                    <a href="#">  <img style="width:70px"  src="{{\Illuminate\Support\Facades\URL::asset($coverImage['path'])}}"/></a>
+                                    <a href="#">  <img style="width:70px"  src="{{asset($coverImage->path)}}"/></a>
                                     </td>
 
                             @endforeach

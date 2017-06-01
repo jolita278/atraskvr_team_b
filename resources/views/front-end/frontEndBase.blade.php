@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-
+    @include('front-end.css')
 </head>
-<body style="background-color:lightgoldenrodyellow">
 
-@include('navbar')
-@include('header')
+
+@include('front-end.menu')
 
 @yield('page')
+@yield('home')
 
-@include('footer')
 
 </body>
-
+@include('front-end.js')
 </html>

@@ -11,9 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//Route::get('/', function () {
+//    return view('front-end.home');
+//});
+Route::get('/', ['as' => 'app.frontend.index', 'uses' => 'VRFrontendController@index']);
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');

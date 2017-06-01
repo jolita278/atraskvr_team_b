@@ -2,7 +2,7 @@
 
 @section('page')
     <div class="container">
-        <h2>Puslapis</h2>
+        <h2>Virtualus turas</h2>
 
 
     </div>
