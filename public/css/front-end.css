@@ -1,10 +1,15 @@
-
-.collapse, .navbar-collapse {
-    width: 100%;
-    margin: 0px;
+#menu, #menu ul, #menu li {
     background-color: black;
+}
+
+#menu li a {
     color: white;
 }
-.nav .navbar-nav{
-    color: white;
+
+#menu a:hover, a:focus {
+    background-color: black;
+    color: #fd7b30;
+}
+#menu ul .open a {
+    background-color: black;
 }
