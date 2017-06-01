@@ -12,6 +12,7 @@ class VROrdersController extends Controller {
 	 */
 	public function adminIndex()
 	{
+	    /*comment*/
         return view('admin.adminOrdersList');
 	}
 
