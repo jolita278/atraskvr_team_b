@@ -1,0 +1,1 @@
+@extends('front-end.front-endCore')
