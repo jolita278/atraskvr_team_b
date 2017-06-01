@@ -14,7 +14,39 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Apie <span class="sr-only">(current)</span></a></li>
+                <li><a>Pradinis</a></li>
+                <li><a>Apie</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs kambariai<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">The Lab</a></li>
+                        <li><a href="#">Fruit Ninja</a></li>
+                        <li><a href="#">Space Pirate Trainer</a></li>
+                        <li><a href="#">Tilt Brush</a></li>
+                        <li><a href="#">Merry Snowballs</a></li>
+                        <li><a href="#">Samsung Irklavimas</a></li>
+                        <li><a href="#">Hurl</a></li>
+                        <li><a href="#">Final Goalie: Football Simulator</a></li>
+                        <li><a href="#">Project Cars</a></li>
+                    </ul>
+                </li>
+                <li><a>Vieta ir laikas</a></li>
+                <li><a>Bilietai</a></li>
+                <li><a>Rėmėjai</a></li>
+                {{--@foreach($menu_lt as $key => $value)
+                    {{dd($menu_lt)}}
+                    @if($value['menu_id'] == 'project_cars' || $value['menu_id'] == 'final_goalie_football_simulator' || $value['menu_id'] == 'hurl' ||
+                    )
+                        <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs kambariai<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">{{$value['name']}}</a></li>
+                        </ul>
+                        @endif
+                        <li><a>{{$value['name']}}</a></li>
+                        @endforeach--}}
+
+                {{--<li class="active"><a href="#">Apie <span class="sr-only">(current)</span></a></li>
                 <li><a href="#">Kontaktai</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patirciu kambariai <span class="caret"></span></a>
@@ -27,7 +59,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="#">One more separated link</a></li>
                     </ul>
-                </li>
+                </li>--}}
             </ul>
             <form class="navbar-form navbar-left">
                 <div>
