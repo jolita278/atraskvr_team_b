@@ -119,7 +119,6 @@ class VRMenusController extends Controller
         $config = $this->getRoutesData();
         $config['languageCode'] = request()-> segment(5);
         $config['languages'] = VRLanguages::pluck('name', 'id')->toArray();
-        $config['pages'] = VRPagesTranslations::where('language_id', $config['languageCode'])->pluck('title', 'title')->toArray();
         $config['parent'] = VRPagesTranslations::where('language_id', $config['languageCode'])->pluck('title', 'title')->toArray();
         $config['item'] = VRMenus::with('translationsData')->find($id)->toArray();
 
