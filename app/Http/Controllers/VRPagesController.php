@@ -22,10 +22,12 @@ class VRPagesController extends Controller
         $config = $this->getRoutesData();
         $config['routeShowDelete'] = 'app.admin.pages.showDelete';
         $config['routeEdit'] = 'app.admin.pages.edit';
-        $config['list'] = VRPages::with(['translationsInfo'])->get()->toArray();
+        $config['list'] = VRPages::with(['translationsInfo', 'coverImage'])->get()->toArray();
         $config['listName'] = 'Pages list';
         $config['ignore'] = 'translations_data';
         $config['url'] = url('admin/pages/create');
+        $config['path'] = $this->getPath();
+       // $config['path'] = VRResources::pluck('path', 'id')->toArray();
         //$config['list']= VRPages::get()->toArray();
 
         //dd($config);
@@ -91,7 +93,7 @@ class VRPagesController extends Controller
         $configuration['name'] = 'name';
         $configuration['language_id'] =
         $configuration['title'] = "Page with translations data";
-        $configuration ['single'] = VRPages::with(['translationsInfo'])->find($id)->toArray();
+        $configuration ['single'] = VRPages::with(['translationsInfo','coverImage' ])->find($id)->toArray();
         return view('admin.adminSingle', $configuration);
     }
 

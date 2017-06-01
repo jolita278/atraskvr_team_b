@@ -29,9 +29,22 @@
                     {{--{{dd($list)}}--}}
 
                     @foreach ($record as $key => $value)
+                        {{--{{dd($record)}}--}}
                         {{--@if($key == 'resource_id')--}}
-                            {{--<td><img style="width:70px" src="{{asset($value->path)}}"/>></td>--}}
+                            {{--<td><img style="width:70px" src="{{asset($cover_image)}}"/>></td>--}}
                         @if ($key == $ignore)
+
+                        @elseif($key == 'cover_image')
+
+                            @foreach($record['cover_image'] as $coverImage)
+
+                              {{--  {{dd($record['cover_image'])}} --}}
+
+                                <td>
+                                    <a href="#">  <img style="width:70px"  src="{{\Illuminate\Support\Facades\URL::asset($coverImage['path'])}}"/></a>
+                                    </td>
+
+                            @endforeach
 
                         @elseif($key == 'roles_connection_data')
 
@@ -92,8 +105,6 @@
                 </tr>
 
             @endforeach
-
-
 
             </tbody>
         </table>
