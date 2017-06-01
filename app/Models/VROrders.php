@@ -16,4 +16,9 @@ class VROrders extends CoreModel
      * @var array
      */
     protected $fillable = ['id', 'order_status', 'user_id'];
+
+    public function orderReservations()
+    {
+        return $this->hasMany(VROrdersReservations:: class,  'order_id', 'id');
+    }
 }

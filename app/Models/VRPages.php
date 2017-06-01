@@ -32,13 +32,17 @@ class VRPages extends CoreModel
         }
 
 
-    public  function resourcesConnectionData()
+    public function resourcesConnectionData()
     {
         return $this->belongsToMany(VRResources::class, 'vr_pages_resources_conn', 'page_id', 'resource_id');
     }
 
-    public
-    function categoryPageData()
+    public  function coverImage()
+    {
+        return $this->hasOne(VRResources::class,  'id', 'resource_id');
+    }
+
+    public function categoryPageData()
     {
         return $this->hasOne(VRCategories::class, 'id', 'category_id');
     }

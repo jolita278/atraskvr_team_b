@@ -27,8 +27,10 @@
             @foreach ($list as $key => $record)
                 <tr>
                     {{--{{dd($list)}}--}}
-                    @foreach ($record as $key => $value)
 
+                    @foreach ($record as $key => $value)
+                        {{--@if($key == 'resource_id')--}}
+                            {{--<td><img style="width:70px" src="{{asset($value->path)}}"/>></td>--}}
                         @if ($key == $ignore)
 
                         @elseif($key == 'roles_connection_data')
