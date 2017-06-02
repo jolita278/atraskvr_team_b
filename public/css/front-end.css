@@ -13,3 +13,25 @@
 #menu ul .open a {
     background-color: black;
 }
+#menu {
+    display: -webkit-flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    border: black;
+}
+body {
+    background-color: #2a88bd;
+}
+.navbar-header {
+    background-color: black;
+}
+#bs-example-navbar-collapse-1, .collapse, .navbar-collapse1 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.navbar, .navbar-default, .navbar-collapse, .navbar-form {
+    border: black;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: black;
+}
