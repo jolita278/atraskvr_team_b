@@ -15,7 +15,7 @@
         {{Form::select('title', $pages)}}
         <br>
         {{ Form::label('parent', 'Parent')}}<br>
-        {{Form::text('parent')}}
+        {{Form::select('parent', [ null => 'Choose parent'] + $parent)}}
         <br> 
         {{ Form::label('sequence', 'Sequence')}}<br>
         {{Form::text('sequence')}}

@@ -80,6 +80,7 @@
                             </td>
                         @endif
                         @if(isset($showDelete))
+
                             <td><a onclick="deleteItem('{{route($showDelete, $record['id'])}}')"
                                    class="btn btn-info btn-sm">Delete</a>
                             </td>
