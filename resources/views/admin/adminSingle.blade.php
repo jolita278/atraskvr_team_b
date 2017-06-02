@@ -16,14 +16,18 @@
                     {{--{{dd($single)}}--}}
                     <td class="col-md-2">{{$key}} </td>
 
-
-                    @if(is_array($value) && $key == 'translations_info')
+                    @if(is_array($value)&& $key == 'menus_translations_data')
                         <td>
+                            {{--{{dd($value)}}--}}
                             @foreach ($value as $translation_value)
-                                {{--TODO foreach--}}
-                                <li>
+                                {{--{{dd($translation_value)}}--}}
+                                {{--@foreach ($translation_value as $key => $translation)--}}
+                                    {{--{{dd($translation)}}--}}
+                                    {{--<li>--}}
+                                        {{--{{$translation}}--}}
+                                    {{--</li>--}}
 
-                                </li>
+                                {{--@endforeach--}}
                             @endforeach
                         </td>
 
@@ -31,6 +35,7 @@
 
                         <td>
                             @foreach ($value as $item)
+
                                 <li>
                                     {{$item[$array_key][$name]}}
                                 </li>
@@ -40,7 +45,6 @@
                     @else
                         <td> {{$value}}</td>
                     @endif
-
 
                 </tr>
             @endforeach

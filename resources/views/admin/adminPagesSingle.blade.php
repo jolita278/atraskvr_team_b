@@ -12,39 +12,29 @@
             <tbody>
 
             @foreach($single as $key => $value)
-                <tr>
-                    {{--{{dd($single)}}--}}
-                    <td class="col-md-2">{{$key}} </td>
 
+                @if(!is_array($value))
+                    <tr>
+                        <td>{{$key}} </td>
+                        <td>{{$value}}</td>
+                    </tr>
+                @elseif($key == 'cover_images')
+                    <td>{{$key}}</td>
+                    <td><img src="{{asset($value['path'])}}" class="img-rounded" width="200"></td>
 
-                    @if(is_array($value) && $key == 'translations_info')
-                        <td>
-                            @foreach ($value as $translation_value)
-                                {{--TODO foreach--}}
-                                <li>
+                @elseif ($key == 'translations')
+                    @foreach ($value as $key => $translations)
 
-                                </li>
-                            @endforeach
-                        </td>
+                        @foreach ($translations['pivot'] as $key => $translation)
+                            <tr>
+                            <td>{{$key}}</td>
+                                <td>{{$translation}} </td>
+                            </tr>
+                        @endforeach
+                    @endforeach
 
-                    @elseif(is_array($value))
-
-                        <td>
-                            @foreach ($value as $item)
-                                <li>
-                                    {{$item[$array_key][$name]}}
-                                </li>
-                            @endforeach
-                        </td>
-
-                    @else
-                        <td> {{$value}}</td>
-                    @endif
-
-
-                </tr>
+                @endif
             @endforeach
-
 
             <a href="{{route($edit, [$single['id'], app()->getLocale()])}}" class="btn btn-primary btn-sm">Edit</a>
 
