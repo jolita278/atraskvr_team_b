@@ -9,78 +9,93 @@
                     Add new</a>
                 <hr/>
             @endif
-            <thead>
-            <tr>
-
-            @foreach($list[0] as $key => $value)
-                        <th>{{$key}}</th>
-            @endforeach
-
-            </tr>
-
-            </thead>
-            <tbody>
-            @foreach ($list as $key => $record)
+            @if($list)
+                <thead>
                 <tr>
-                    @foreach ($record as $key => $value)
-
-                        @if ($key == $ignore)
-
-
-                        @elseif($key == 'roles_connection_data')
-
-                            @foreach($record['roles_connection_data'] as $role)
-
-                                <td>{{$role['name']}}</td>
-                            @endforeach
-
-                        @elseif($key == 'category_translations')
-                            @foreach($record['category_translations'] as $translation)
-
-                                <td>{{$translation['name']}}</td>
-                            @endforeach
-
-                        @elseif($key == 'translations')
-
-                            @foreach($record['translations'] as $translation)
-
-                                <td>{{$translation['name']}}</td>
-                            @endforeach
-
-                        @else
-                            <td>
-                                {{$value}}
-                            </td>
-                        @endif
-
-
+                    @foreach($list[0] as $key => $value)
+                        <th>{{$key}}</th>
                     @endforeach
-
-                    @if(isset($showDelete))
-
-                        <td><a href="{{route($showDelete, $record['id'])}}"
-                               class="btn btn-primary btn-sm">View</a>
-                        </td>
-                    @endif
-
-                    @if(isset($edit))
-
-                        <td><a href="{{route($edit, [$record['id'], app()->getLocale()])}}" class="btn btn-info btn-sm">Edit</a>
-                        </td>
-                    @endif
-                    @if(isset($showDelete))
-                            <td><a onclick="deleteItem('{{route($showDelete, $record['id'])}}')"
-                                class="btn btn-info btn-sm">Delete</a>
-                            </td>
-                    @endif
 
                 </tr>
 
-            @endforeach
+                </thead>
+                <tbody>
+                @foreach ($list as $key => $record)
+                    <tr>
+                        @foreach ($record as $key => $value)
 
-            </tbody>
+                            @if ($key == $ignore)
+
+                            @elseif($key == 'cover_images')
+
+                                <td><img src="{{asset($value['path'])}}" class="img-rounded" width="200"></td>
+
+                            @elseif($key == 'roles_connection_data')
+
+                                @foreach($record['roles_connection_data'] as $role)
+
+                                    <td>{{$role['name']}}</td>
+                                @endforeach
+
+                            @elseif($key == 'category_translations')
+
+                                @foreach($record['category_translations'] as $translation)
+
+                                    <td>{{$translation['name']}}</td>
+                                @endforeach
+
+                            @elseif($key == 'translations')
+
+                                @foreach($record['translations'] as $translation)
+
+                                    <td>{{$translation['name']}}</td>
+
+                                @endforeach
+                            @elseif($key == 'translations_info')
+
+                                @foreach($record['translations_info'] as $translation)
+
+                                    <td>{{$translation['title']}}</td>
+
+                                @endforeach
+
+                            @else
+                                <td>
+                                    {{$value}}
+                                </td>
+                            @endif
+                        @endforeach
+
+                        @if(isset($showDelete))
+
+                            <td><a href="{{route($showDelete, $record['id'])}}"
+                                   class="btn btn-primary btn-sm">View</a>
+                            </td>
+                        @endif
+
+                        @if(isset($edit))
+
+                            <td><a href="{{route($edit, [$record['id'], app()->getLocale()])}}"
+                                   class="btn btn-info btn-sm">Edit</a>
+                            </td>
+                        @endif
+                        @if(isset($showDelete))
+
+                            <td><a onclick="deleteItem('{{route($showDelete, $record['id'])}}')"
+                                   class="btn btn-info btn-sm">Delete</a>
+                            </td>
+                        @endif
+
+                    </tr>
+
+                @endforeach
+
+                </tbody>
         </table>
     </div>
+    @else
+        {{'No items!'}}
+    @endif
 @endsection
 
 @section('scripts')
