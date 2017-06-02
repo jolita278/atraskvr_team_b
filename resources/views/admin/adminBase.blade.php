@@ -26,7 +26,7 @@
 @yield('adminMenusEdit')
 
 
-@yield('adminPagesList')
+{{--@yield('adminPagesList')--}}
 @yield('adminOrdersList')
 
 

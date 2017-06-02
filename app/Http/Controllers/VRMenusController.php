@@ -99,7 +99,7 @@ class VRMenusController extends Controller
     public function adminShow($id)
     {
         $configuration = $this->getRoutesData();
-        $configuration['array_key'] = 'pivot';
+//        $configuration['array_key'] = 'pivot';
         $configuration['name'] = 'name';
         $configuration['language_id'] =
         $configuration['title'] = "Menu with translations data";
@@ -157,7 +157,7 @@ class VRMenusController extends Controller
                 'language_id' => $data['language_id'],
             ));
         }
-        return redirect('/admin')->with('message', 'Meniu įrašas sėkmingai atnaujintas');
+        return redirect('/admin/menus')->with('message', 'Meniu įrašas sėkmingai atnaujintas');
     }
 
     /**
