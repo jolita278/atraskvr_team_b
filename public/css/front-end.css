@@ -32,6 +32,18 @@ body {
 .navbar, .navbar-default, .navbar-collapse, .navbar-form {
     border: black;
 }
-.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+.navbar-default .navbar-toggle:focus {
     background-color: black;
+
+}
+.navbar-default .navbar-toggle:hover {
+    background-color: black;
+    color: #fd7b30;
+    border: 1px solid #fd7b30;
+}
+.navbar-default .navbar-toggle, .navbar-default .navbar-toggle {
+    color: white;
+}
+.nav .navbar-nav {
+    
 }
