@@ -3,6 +3,7 @@
 @section('adminList')
     <div class="container">
         <h2> {{$listName}}</h2>
+        <div>@include('error-notification')</div>
         <table class="table table-hover">
             @if(isset($url))
                 <a href="{{$url}}" class="btn btn-primary" role="button">
