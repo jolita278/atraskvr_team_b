@@ -1,0 +1,15 @@
+#menu, #menu ul, #menu li {
+    background-color: black;
+}
+
+#menu li a {
+    color: white;
+}
+
+#menu a:hover, a:focus {
+    background-color: black;
+    color: #fd7b30;
+}
+#menu ul .open a {
+    background-color: black;
+}
