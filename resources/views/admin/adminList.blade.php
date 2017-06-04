@@ -1,6 +1,7 @@
 @extends('admin.adminBase')
 
 @section('adminList')
+    <div class="main">
     <div class="container">
         <h2> {{$listName}}</h2>
         <div>@include('error-notification')</div>
@@ -94,9 +95,11 @@
                 </tbody>
         </table>
     </div>
+
     @else
         {{'No items!'}}
     @endif
+    </div>
 @endsection
 
 @section('scripts')

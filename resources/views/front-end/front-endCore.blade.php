@@ -9,6 +9,7 @@
 <body>
     @include('front-end.front-endMenu')
     @yield('homepage')
+
 </body>
     @include('front-end.front-endJavaScript')
 </html>
