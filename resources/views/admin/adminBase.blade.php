@@ -11,26 +11,24 @@
 
 {{--@yield('pages')--}}
 @yield('adminList')
-{{--@yield('adminResourcesList')
+@yield('adminResourcesList')
 @yield('adminUpload').
 @yield('adminSingle')
 @yield('adminUsersEdit')
 @yield('adminPagesCreate')
-@yield('adminPagesEdit')--}}
+@yield('adminPagesEdit')
 
-{{--@yield('adminPagesSingle')--}}
-{{--@yield('adminMenusSingle')--}}
+@yield('adminPagesSingle')
+@yield('adminMenusSingle')
 
-{{--
 @yield('adminMenusCreate')
 @yield('adminMenusEdit')
---}}
 
 
-{{--@yield('adminPagesList')--}}
-{{--@yield('adminOrdersList')--}}
+@yield('adminPagesList')
+@yield('adminOrdersList')
 
-<footer style="background-color:green; height: 100px;">
+<footer style="width: 100%">
     @include('footer')
 </footer>
 

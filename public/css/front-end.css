@@ -65,9 +65,10 @@ body {
     background-position-y: -100px;
 }
 #elektromarkt {
-    height: 100px;
-    width: 1000px;
+    /*height: 500px;
+    width: 500px;*/
     background: url("../images/partner-logo_elektromarkt 2.png") no-repeat;
     /*margin: 0 auto;*/
-    background-position-y: 100px;
+    /*background-position-y: 1000px;*/
+    z-index: 9999999999;
 }
