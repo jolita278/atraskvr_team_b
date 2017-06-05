@@ -9,10 +9,8 @@ class VRFrontEndController extends Controller
 {
     public function displayHomePage() {
 
-        $data['menu'] = VRMenus::with(['translations', 'children'])->where('parent', "")->get()->toArray();
-
-        dd($data);
-
+        $data['menus'] = VRMenus::with(['translations', 'children'])->where('parent', "")->get()->toArray();
+        
         return view('front-end.front-endHome', $data);
     }
 }

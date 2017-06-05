@@ -12,27 +12,19 @@
         <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse" >
             <div id="menu">
                 <ul class="nav navbar-nav">
-                    @foreach($menu_lt as $key => $menus)
-                        @foreach($menus['translations'] as $key => $menu)
-                            @if($menu['language_id'] == app()->getLocale() && $menus['parent'] == '')
-                                <li><a>{{$menu['name']}}</a></li>
-                            @endif
-                        @endforeach
-                    @endforeach
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{trans('app.dropdown_virtual_rooms')}}<span class="caret"></span></a>
+                    @foreach($menus as $key => $menu)
+                        @if($menu['children'] == true)
+                            <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$menu['translations']['name']}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @foreach($menu_lt as $key => $value)
-                                    @if($value['parent'] == 'Virtualūs Kambariai')
-                                        @foreach($value['translations'] as $key => $val)
-                                            @if($val['language_id'] == app()->getLocale())
-                                                <li><a href="#">{{$val['name']}}</a></li>
-                                            @endif
-                                        @endforeach
-                                    @endif
+                                @foreach($menu['children'] as $key => $child)
+                                <li><a href="#">{{$child['translations']['name']}}</a></li>
                                 @endforeach
                             </ul>
-                        </li>
+                            </li>
+                        @endif
+                        <li><a>{{$menu['translations']['name']}}</a></li>
+                    @endforeach
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kalba<span class="caret"></span></a>
                             <ul class="dropdown-menu">
