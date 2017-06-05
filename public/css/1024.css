@@ -5,4 +5,13 @@
     #part-01 {
         height: 1048px;
     }
+    #banner-text {
+        font-size: 14px;
+    }
+    #banner-text {
+        margin-top: 500px;
+        width: 400px;
+        -webkit-transition: width 1s, margin-top 1s;
+
+    }
 }

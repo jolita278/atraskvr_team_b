@@ -14,25 +14,33 @@
                 <ul class="nav navbar-nav">
                     @foreach($menu_lt as $key => $menus)
                         @foreach($menus['translations'] as $key => $menu)
-                            @if($menu['language_id'] == 'lt' && $menus['parent'] == '')
+                            @if($menu['language_id'] == app()->getLocale() && $menus['parent'] == '')
                                 <li><a>{{$menu['name']}}</a></li>
                             @endif
                         @endforeach
                     @endforeach
                         <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs Kambariai<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{trans('app.dropdown_virtual_rooms')}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 @foreach($menu_lt as $key => $value)
                                     @if($value['parent'] == 'Virtualūs Kambariai')
                                         @foreach($value['translations'] as $key => $val)
-                                            @if($val['language_id'] == 'lt')
+                                            @if($val['language_id'] == app()->getLocale())
                                                 <li><a href="#">{{$val['name']}}</a></li>
                                             @endif
                                         @endforeach
                                     @endif
                                 @endforeach
                             </ul>
-                            </li>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kalba<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Lietuvių</a></li>
+                                <li><a href="#">English</a></li>
+                                <li><a href="#">Rusų</a></li>
+                            </ul>
+                        </li>
                 </ul>
             </div>
         </div>
