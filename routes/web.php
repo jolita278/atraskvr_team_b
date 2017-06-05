@@ -10,8 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/menu', ['uses' => 'VRWelcomePageController@displayMenu']);
-
 Route::get('/', ['uses' => 'VRFrontEndController@displayMenu']);
 
 Route::get('/redirect', 'SocialAuthController@redirect');
