@@ -10,10 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/menu', ['uses' => 'VRWelcomePageController@displayMenu']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['uses' => 'VRFrontEndController@displayHomePage']);
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');

@@ -18,18 +18,16 @@ class VRPagesController extends Controller
      */
     public function adminIndex()
     {
-        $config = [];
         $config = $this->getRoutesData();
-        $config['routeShowDelete'] = 'app.admin.pages.showDelete';
-        $config['routeEdit'] = 'app.admin.pages.edit';
-        $config['list'] = VRPages::with(['translationsData'])->get()->toArray();
+        $config['list'] = VRPages::with(['translationsInfo', 'coverImages'])->get()->toArray();
         $config['listName'] = 'Pages list';
-        $config['ignore'] = 'translations_data';
+        $config['ignore'] = ['resource_id','deleted_at'];
+        $config['array_key'] = 'pivot';
         $config['url'] = url('admin/pages/create');
+        $config['coverImage'] = VRResources::all()->pluck('path', 'id')->toArray();
         //$config['list']= VRPages::get()->toArray();
 
-        //dd($config);
-        return view('admin.adminPagesList', $config);
+        return view('admin.adminList', $config);
     }
 
     /**
@@ -56,15 +54,10 @@ class VRPagesController extends Controller
      */
     public function adminStore()
     {
-        //dd($_POST);
         $data = request()->all();
         $record = VRPages::create(array(
             'category_id' => $data['category_id'],
-            //'resource_id' => $data['resource_id'],
         ));
-
-        //dd($record->toArray());
-
 
         VRPagesTranslations::create(array(
             'page_id' => $record->id,
@@ -86,9 +79,11 @@ class VRPagesController extends Controller
      */
     public function adminShow($id)
     {
-        $config = $this->getRoutesData();
-        $config ['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
-        return view('admin.adminPagesSingle', $config);
+        $configuration = $this->getRoutesData();
+        $configuration['title'] = "Page with translations data";
+        $configuration ['single'] = VRPages::with(['translations', 'coverImages'])->find($id)->toArray();
+
+        return view('admin.adminPagesSingle', $configuration);
     }
 
     /**
@@ -101,15 +96,13 @@ class VRPagesController extends Controller
     public function adminEdit($id)
     {
         $config = [];
-        $config ['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
+        $config['single'] = VRPages::with(['translationsData'])->find($id)->toArray();
         $config['category'] = VRCategories::pluck('id', 'id')->toArray();
         $config['resource'] = VRResources::pluck('path', 'id')->toArray();
         $config['language'] = VRLanguages::pluck('name', 'id')->toArray();
         $config['languageCode'] = request()->segment(5);
         $config['sing'] = VRPages::find($id)->toArray();
 
-
-        //dd($config);
         return view('admin.adminPagesEdit', $config);
     }
 
@@ -130,18 +123,12 @@ class VRPagesController extends Controller
         $translation = VRPagesTranslations::where('page_id', $id)->get()
             ->where('language_id', $data['language_id'])
             ->first();
-        //dd($translation->toArray());
-        //       dd($translation);
-
-
         if ($translation) {
             $translation->update($data);
         } else {
             $data['page_id'] = $record->id;
             VRPagesTranslations::create($data);
         }
-
-
         return redirect('/admin/pages');
     }
 
@@ -154,7 +141,7 @@ class VRPagesController extends Controller
      */
     public function adminDestroy($id)
     {
-        VRPagesTranslations::destroy(VRPagesTranslations::where('page_id',$id)->pluck('id')->toArray());
+        VRPagesTranslations::destroy(VRPagesTranslations::where('page_id', $id)->pluck('id')->toArray());
         VRPages::destroy($id);
 
         return json_encode(["success" => true, "id" => $id]);
@@ -163,9 +150,11 @@ class VRPagesController extends Controller
     public function getRoutesData()
     {
         $config = [];
-        $config ['usersList'] = 'app.admin.pages.index';
+        $config ['list'] = 'app.admin.pages.index';
         $config ['showDelete'] = 'app.admin.pages.showDelete';
         $config ['edit'] = 'app.admin.pages.edit';
+//        $config['routeShowDelete'] = 'app.admin.pages.showDelete';
+//        $config['routeEdit'] = 'app.admin.pages.edit';
         return $config;
     }
 
