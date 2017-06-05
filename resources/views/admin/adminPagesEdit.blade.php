@@ -12,9 +12,10 @@
         {{Form::label('page', 'Resursai:')}}
         {{Form::select('resource_id' , $resource, $single['resource_id'])}}
         <br/>
+
         {{Form::label('page', 'Kalbos:')}}
-        {{Form::select('language_id',$language, $single['translations_data']['language_id'])}}
-        <br/>
+        {{Form::select('language_id', $language, $single['translations_data']['language_id'])}}
+         <br/>
         {{Form::label('page', 'Pavadinimas:')}}
         <br/>
         {{Form::textarea('title',$single['translations_data']['title'],['size' => '40x1'])}}
@@ -36,3 +37,15 @@
 
     </div>
 @endsection
+
+@section('scripts')
+<script>
+
+    var $languageDropDown = $("[name='language_id']");
+
+    $languageDropDown.bind('change', function () {
+        location.href = "/admin/pages/{{$single['id']}}/edit/" + $languageDropDown.val();
+    });
+</script>
+@endsection
+

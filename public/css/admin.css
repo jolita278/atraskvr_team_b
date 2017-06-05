@@ -1,0 +1,19 @@
+body {
+    background-color:lightblue;
+}
+.adminSideBar {
+    background-color: yellow;
+    float: left;
+    width: 20%;
+}
+.main {
+    float: right;
+    width: 80%;
+    background-color: red;
+}
+.footer {
+    float: left;
+    clear: both;
+    width: 100%;
+    background-color: #0d3625;
+}

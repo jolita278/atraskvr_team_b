@@ -1,8 +1,10 @@
 @extends('admin.adminBase')
 
 @section('adminList')
+    <div class="main">
     <div class="container">
         <h2> {{$listName}}</h2>
+        <div>@include('error-notification')</div>
         <table class="table table-hover">
             @if(isset($url))
                 <a href="{{$url}}" class="btn btn-primary" role="button">
@@ -93,9 +95,11 @@
                 </tbody>
         </table>
     </div>
+
     @else
         {{'No items!'}}
     @endif
+    </div>
 @endsection
 
 @section('scripts')

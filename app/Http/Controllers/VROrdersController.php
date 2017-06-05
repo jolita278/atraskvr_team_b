@@ -19,7 +19,6 @@ class VROrdersController extends Controller
         $configuration ['list'] = VROrders::with(['orderReservations'])->get()->toArray();
         $configuration ['ignore'] = '';
         $configuration ['url'] = url('admin/orders/create');
-
         return view('admin.adminList', $configuration);
     }
 
