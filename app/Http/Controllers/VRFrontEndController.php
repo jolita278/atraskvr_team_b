@@ -13,8 +13,10 @@ class VRFrontEndController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      */
-    public function displayMenu() {
+    public function displayMenu($lang) {
 
+        app()->setLocale($lang);
+        
         $data['menus'] = VRMenus::with(['translations', 'children'])->where('parent', "")->get()->toArray();
 
         return view('front-end.front-endHome', $data);
