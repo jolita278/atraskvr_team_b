@@ -10,14 +10,11 @@
         {{ Form::label('language_id', 'Choose language')}}<br>
         {{Form::select('language_id', $languages, $languageCode)}}
         <br>
-        {{ Form::label('name', 'Choose Name')}}<br>
-        {{Form::select('name', $pages, $item['translations_data']['name'])}}
+        {{ Form::label('name', 'Name')}}<br>
+        {{Form::text('name', $item['translations_data']['name'])}}
         <br>
-        {{ Form::label('parent', 'Parent')}}<br>
-        {{Form::select('parent', [ null => 'Choose parent'] + $parent, $item['parent'])}}
-        <br>
-        {{ Form::label('slug', 'Slug')}}<br>
-        {{Form::text('slug', $item['translations_data']['slug'])}}
+        {{ Form::label('parent', 'Parent (if you want to make a dropdown)')}}<br>
+        {{Form::text('parent', $item['parent'])}}
         <br>
         {{ Form::label('sequence', 'Sequence')}}<br>
         {{Form::text('sequence', $item['sequence'])}}
@@ -35,4 +32,13 @@
         {{ Form::submit('Submit') }} {{--TODO:: button reset--}}
         {!! Form::close() !!}
     </div>
-@endsection        
+@endsection
+
+@section('scripts')
+    <script>
+        var $languageDropDown = $("[name='language_id']");
+        $languageDropDown.bind('change', function () {
+            location.href = "/admin/menus/{{$item['id']}}/edit/" + $languageDropDown.val();
+        });
+    </script>
+@endsection

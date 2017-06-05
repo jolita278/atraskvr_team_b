@@ -1,0 +1,73 @@
+#menu, #menu ul, #menu li {
+    background-color: black;
+}
+
+#menu li a {
+    color: white;
+}
+
+#menu a:hover, a:focus {
+    background-color: black;
+    color: #fd7b30;
+}
+#menu ul .open a {
+    background-color: black;
+}
+#menu {
+    display: -webkit-flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    border: black;
+}
+body {
+    background-color: #2a88bd;
+}
+.navbar-header {
+    background-color: black;
+}
+#bs-example-navbar-collapse-1, .collapse, .navbar-collapse1 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.navbar, .navbar-default, .navbar-collapse, .navbar-form {
+    border: black;
+}
+.navbar-default .navbar-toggle:focus {
+    background-color: black;
+}
+
+.navbar-default .navbar-toggle:hover {
+    background-color: black;
+    color: #fd7b30;
+    border: 1px solid #fd7b30;
+}
+.navbar-default .navbar-toggle {
+    color: white;
+}
+.navbar {
+    margin-bottom: 0px;
+    position: fixed;
+    width: 100%;
+}
+#part-01 {
+    height: 1073px;
+    width: 100%;
+    background: url("../images/kv_2.jpg") no-repeat center center;
+    background-size: cover;
+    -webkit-transition: height 1s;
+
+}
+#red-flag {
+    width: 268px;
+    height: 326px;
+    background: url("../images/red_flag.png") no-repeat;
+    margin: 0 auto;
+    background-position-y: -100px;
+}
+#elektromarkt {
+    height: 100px;
+    width: 1000px;
+    background: url("../images/partner-logo_elektromarkt 2.png") no-repeat;
+    /*margin: 0 auto;*/
+    background-position-y: 100px;
+}

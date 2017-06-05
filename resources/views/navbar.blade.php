@@ -14,7 +14,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a>Pradinis</a></li>
+                {{--<li><a>Pradinis</a></li>
                 <li><a>Apie</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs kambariai<span class="caret"></span></a>
@@ -32,34 +32,30 @@
                 </li>
                 <li><a>Vieta ir laikas</a></li>
                 <li><a>Bilietai</a></li>
-                <li><a>Rėmėjai</a></li>
-                {{--@foreach($menu_lt as $key => $value)
-                    {{dd($menu_lt)}}
-                    @if($value['menu_id'] == 'project_cars' || $value['menu_id'] == 'final_goalie_football_simulator' || $value['menu_id'] == 'hurl' ||
-                    )
-                        <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs kambariai<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">{{$value['name']}}</a></li>
-                        </ul>
+                <li><a>Rėmėjai</a></li>--}}
+                @foreach($menu_lt as $key => $menus)
+                    @foreach($menus['translations'] as $key => $menu)
+                        @if($menu['language_id'] == 'lt' && $menus['parent'] == '')
+                         <li><a>{{$menu['name']}}</a></li>
                         @endif
-                        <li><a>{{$value['name']}}</a></li>
-                        @endforeach--}}
+                    @endforeach
+                @endforeach
 
-                {{--<li class="active"><a href="#">Apie <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Kontaktai</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patirciu kambariai <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs Kambariai<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
+                @foreach($menu_lt as $key => $value)
+                    @if($value['parent'] == 'Virtualūs Kambariai')
+                        @foreach($value['translations'] as $key => $val)
+                            @if($val['language_id'] == 'lt')
+                                <li><a href="#">{{$val['name']}}</a></li>
+                            @endif
+                        @endforeach
+                    @endif
+                @endforeach
                     </ul>
-                </li>--}}
+
+
             </ul>
             <form class="navbar-form navbar-left">
                 <div>

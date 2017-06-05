@@ -1,0 +1,8 @@
+@media screen and (max-width: 1024px) {
+    body {
+        background-color: dimgrey;
+    }
+    #part-01 {
+        height: 1048px;
+    }
+}
