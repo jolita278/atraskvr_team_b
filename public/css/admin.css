@@ -1,19 +1,28 @@
 body {
-    background-color:lightblue;
+    background-color: #f3f3f4;
 }
 .adminSideBar {
-    background-color: yellow;
+    background-color: #2f4050;
     float: left;
     width: 20%;
+    text-align: left;
+    color: #f3f3f4;
+    min-height: 100vh;
+    padding: 0 30px;
+}
+.adminSideBar a {
+    color: #a7b1c2;
+    font-size: 17px;
+    line-height: 27px;
 }
 .main {
     float: right;
     width: 80%;
-    background-color: red;
 }
-.footer {
-    float: left;
+#footer {
     clear: both;
     width: 100%;
-    background-color: #0d3625;
+}
+.navbar {
+    margin-bottom: 0px
 }
