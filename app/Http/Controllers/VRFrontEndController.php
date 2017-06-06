@@ -17,7 +17,7 @@ class VRFrontEndController extends Controller
 
         app()->setLocale($lang);
         
-        $data['menus'] = VRMenus::with(['translations', 'children'])->where('parent', "")->get()->toArray();
+        $data['menus'] = VRMenus::with(['translationsLang', 'children'])->where('parent', "")->get()->toArray();
 
         return view('front-end.front-endHome', $data);
     }

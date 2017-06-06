@@ -46,7 +46,7 @@ class VRMenus extends CoreModel
      * locale language
      * @return mixed
      */
-    public function translations()
+    public function translationsLang()
     {
         return $this->hasOne(VRMenusTranslations::class, 'menu_id', 'id')->where('language_id', app()->getLocale());
     }
@@ -58,6 +58,16 @@ class VRMenus extends CoreModel
      * @return mixed
      */
     public function children() {
-        return $this->hasMany(VRMenus::class, 'parent', 'id')->with('translations');
+        return $this->hasMany(VRMenus::class, 'parent', 'id')->with('translationsLang');
+    }
+
+    /**
+     * Returns many translations
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *
+     */
+    public function translations()
+    {
+        return $this->hasMany(VRMenusTranslations::class, 'menu_id', 'id');
     }
 }

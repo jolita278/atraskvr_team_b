@@ -15,15 +15,15 @@
                     @foreach($menus as $key => $menu)
                         @if($menu['children'] == true)
                             <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$menu['translations']['name']}}<span class="caret"></span></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{$menu['translations_lang']['name']}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 @foreach($menu['children'] as $key => $child)
-                                <li><a href="#">{{$child['translations']['name']}}</a></li>
+                                <li><a href="#">{{$child['translations_lang']['name']}}</a></li>
                                 @endforeach
                             </ul>
                             </li>
                         @endif
-                        <li><a>{{$menu['translations']['name']}}</a></li>
+                        <li><a>{{$menu['translations_lang']['name']}}</a></li>
                     @endforeach
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Kalba<span class="caret"></span></a>
