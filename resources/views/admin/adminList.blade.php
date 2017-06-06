@@ -93,13 +93,12 @@
                 @endforeach
 
                 </tbody>
-        </table>
-    </div>
-
     @else
         {{'No items!'}}
     @endif
+    </table>
     </div>
+</div>
 @endsection
 
 @section('scripts')

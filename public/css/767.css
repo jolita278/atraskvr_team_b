@@ -9,5 +9,22 @@
     #part-01 {
         height: 601px;
     }
+    #red-flag {
+        width: 150px;
+        background-size: contain;
+        background-position-y: -20px;
+
+    }
+    #elektromarkt {
+        width: 140px;
+        background-position-y: +105px;
+        font-size: 14px;
+        padding-top: 80px;
+    }
+    #banner-text {
+        width: 300px;
+        margin-top: 200px;
+        -webkit-transition: width 1s, margin-top 1s;
+    }
 }
 

@@ -14,40 +14,23 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                {{--<li><a>Pradinis</a></li>
-                <li><a>Apie</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs kambariai<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">The Lab</a></li>
-                        <li><a href="#">Fruit Ninja</a></li>
-                        <li><a href="#">Space Pirate Trainer</a></li>
-                        <li><a href="#">Tilt Brush</a></li>
-                        <li><a href="#">Merry Snowballs</a></li>
-                        <li><a href="#">Samsung Irklavimas</a></li>
-                        <li><a href="#">Hurl</a></li>
-                        <li><a href="#">Final Goalie: Football Simulator</a></li>
-                        <li><a href="#">Project Cars</a></li>
-                    </ul>
-                </li>
-                <li><a>Vieta ir laikas</a></li>
-                <li><a>Bilietai</a></li>
-                <li><a>Rėmėjai</a></li>--}}
+
                 @foreach($menu_lt as $key => $menus)
                     @foreach($menus['translations'] as $key => $menu)
-                        @if($menu['language_id'] == 'lt' && $menus['parent'] == '')
+                        @if($menu['language_id'] == app()->getLocale() && $menus['parent'] == '')
                          <li><a>{{$menu['name']}}</a></li>
                         @endif
+
                     @endforeach
                 @endforeach
 
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Virtualūs Kambariai<span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">{{trans('app.dropdown_virtual_rooms')}}<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                 @foreach($menu_lt as $key => $value)
                     @if($value['parent'] == 'Virtualūs Kambariai')
                         @foreach($value['translations'] as $key => $val)
-                            @if($val['language_id'] == 'lt')
+                            @if($val['language_id'] == app()->getLocale())
                                 <li><a href="#">{{$val['name']}}</a></li>
                             @endif
                         @endforeach

@@ -48,6 +48,7 @@ body {
     margin-bottom: 0px;
     position: fixed;
     width: 100%;
+    z-index: 1;
 }
 #part-01 {
     height: 1073px;
@@ -59,15 +60,38 @@ body {
 }
 #red-flag {
     width: 268px;
-    height: 326px;
+    height: 226px;
     background: url("../images/red_flag.png") no-repeat;
     margin: 0 auto;
     background-position-y: -100px;
 }
 #elektromarkt {
-    height: 100px;
-    width: 1000px;
-    background: url("../images/partner-logo_elektromarkt 2.png") no-repeat;
-    /*margin: 0 auto;*/
-    background-position-y: 100px;
+    height: 210px;
+    width: 239px;
+    background: url("../images/partner-logo_elektromarkt 2.png") no-repeat center center;
+    background-size: contain;
+    margin: 0 auto;
+    background-position-y: +123px;
+    color: #FF958B;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 93px;
+}
+#main-title {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 8vw;
+    text-align: center;
+    text-transform: uppercase;
+    color: #f2f2f2;
+    text-shadow: 5px 5px 3px rgba(120, 120, 120, 0.5);
+    transform: scale(0.9, 1.2);
+}
+#banner-text {
+    margin: 0 auto;
+    text-align: center;
+    width: 350px;
+    background-color: #fd7b30;
+    padding: 13px 25px;
+    color: white;
+    font-size: 18px;
 }
