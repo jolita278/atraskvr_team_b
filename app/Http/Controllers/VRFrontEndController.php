@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VRMenus;
+use App\Models\VRPages;
 use Illuminate\Http\Request;
 
 class VRFrontEndController extends Controller
@@ -13,12 +14,14 @@ class VRFrontEndController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      *
      */
-    public function displayMenu($lang) {
+    public function displayMenu() {
 
-        app()->setLocale($lang);
-        
         $data['menus'] = VRMenus::with(['translationsLang', 'children'])->where('parent', "")->get()->toArray();
+
+        $data['about'] = VRPages::with(['translation', 'coverImages'])->find('apie')->toArray();
+        dd($data['about']);
 
         return view('front-end.front-endHome', $data);
     }
+
 }

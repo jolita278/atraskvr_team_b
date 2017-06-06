@@ -24,6 +24,11 @@ class VRPages extends CoreModel
         return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->where('language_id', $languageCode);
 
     }
+    public function translation()
+    {
+        return $this->hasOne(VRPagesTranslations::class, 'page_id', 'id')->where('language_id', app()->getLocale());
+
+    }
 
     public function translations()
     {

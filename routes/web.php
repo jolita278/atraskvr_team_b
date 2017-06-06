@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/{lang}', ['uses' => 'VRFrontEndController@displayMenu']);
+
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
@@ -107,3 +107,4 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth', 'notUserRestriction']
     });
 });
 
+Route::get('/{lang?}', ['middleware' => ['LanguageFinder'],'uses' => 'VRFrontEndController@displayMenu']);
