@@ -146,7 +146,10 @@ class VRPagesController extends Controller
 
         return json_encode(["success" => true, "id" => $id]);
     }
-
+    /**
+     * Get routes data
+     * @return array
+     */
     public function getRoutesData()
     {
         $config = [];

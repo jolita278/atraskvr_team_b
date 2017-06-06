@@ -21,7 +21,10 @@ class VRCategoriesController extends Controller {
 
         return view('admin.adminList', $configuration);
     }
-
+    /**
+     * Get routes data
+     * @return array
+     */
     public function getRoutesData()
     {
         $configuration = [];

@@ -27,7 +27,8 @@ class VRPages extends CoreModel
 
     public function translations()
     {
-        return $this->belongsToMany(VRlanguages::class, 'vr_pages_translations', 'page_id', 'language_id' )->withPivot('title', 'description_short', 'description_long', 'slug');
+        return $this->belongsToMany(VRPagesTranslations::class, 'vr_pages_translations', 'page_id', 'language_id');
+
     }
 
     public function resourcesConnectionData()
@@ -49,5 +50,9 @@ class VRPages extends CoreModel
     {
         return $this->hasMany(VRPagesTranslations::class, 'page_id', 'id');
     }
+//    public function experienceTranslations()
+//    {
+//        return $this->belongsToMany(VRlanguages::class, 'vr_pages_translations', 'page_id', 'language_id' )->withPivot('title');
+//    }
 }
 

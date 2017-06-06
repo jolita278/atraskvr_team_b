@@ -5,7 +5,7 @@
 
         <h2>Create new menu</h2>
         <div>@include('error-notification')</div>
-        
+
         {!! Form::open(['url' => route('app.admin.menus.create')]) !!}
         <br>
         {{ Form::label('language', 'Choose language')}}<br>
